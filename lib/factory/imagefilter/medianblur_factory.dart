@@ -17,7 +17,6 @@ class MedianBlurFactory {
   static Future<Uint8List?> medianBlur({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int kernelSize,
   }) async {
     File _file;

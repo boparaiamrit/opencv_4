@@ -17,7 +17,6 @@ class DilateFactory {
   static Future<Uint8List?> dilate({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required List<double> kernelSize,
   }) async {
     File _file;

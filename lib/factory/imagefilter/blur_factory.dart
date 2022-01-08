@@ -17,7 +17,6 @@ class BlurFactory {
   static Future<Uint8List?> blur({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required List<double> kernelSize,
     required List<double> anchorPoint,
     required int borderType,

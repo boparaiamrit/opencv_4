@@ -17,7 +17,6 @@ class LaplacianFactory {
   static Future<Uint8List?> laplacian({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int depth,
   }) async {
     File _file;

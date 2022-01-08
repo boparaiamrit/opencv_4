@@ -17,7 +17,6 @@ class SqrBoxFilterFactory {
   static Future<Uint8List?> sqrBoxFilter({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int outputDepth,
     required List<double> kernelSize,
   }) async {

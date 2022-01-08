@@ -17,7 +17,6 @@ class GaussianBlurFactory {
   static Future<Uint8List?> gaussianBlur({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required List<double> kernelSize,
     required double sigmaX,
   }) async {

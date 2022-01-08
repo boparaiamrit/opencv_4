@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         maxThresholdValue: maxThresholdValue,
         thresholdType: thresholdType,
         thresholdValue: thresholdValue,
+        imageData: Uint8List(0)
       );
 
       setState(() {

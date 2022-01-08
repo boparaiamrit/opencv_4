@@ -17,7 +17,6 @@ class MorphologyExFactory {
   static Future<Uint8List?> morphologyEx({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int operation,
     required List<int> kernelSize,
   }) async {

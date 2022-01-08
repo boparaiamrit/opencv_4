@@ -17,7 +17,6 @@ class DistanceTransformFactory {
   static Future<Uint8List?> distanceTransform({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int distanceType,
     required int maskSize,
   }) async {

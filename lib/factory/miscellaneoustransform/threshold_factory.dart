@@ -17,7 +17,7 @@ class ThresholdFactory {
   static Future<Uint8List?> threshold({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
+    required Uint8List imageData,
     required double thresholdValue,
     required double maxThresholdValue,
     required int thresholdType,
@@ -62,11 +62,11 @@ class ThresholdFactory {
         break;
       case CVPathFrom.DATA:
         result = await platform.invokeMethod(
-          'blur',
+          'threshold',
           {
             "pathType": 4,
             "pathString": '',
-            "data": imageData!,
+            "data": imageData,
             'thresholdValue': thresholdValue,
             'maxThresholdValue': maxThresholdValue,
             'thresholdType': thresholdType

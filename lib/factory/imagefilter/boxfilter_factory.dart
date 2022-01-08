@@ -17,7 +17,6 @@ class BoxFilterFactory {
   static Future<Uint8List?> boxFilter({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int outputDepth,
     required List<double> kernelSize,
     required List<double> anchorPoint,

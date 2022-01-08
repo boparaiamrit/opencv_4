@@ -17,7 +17,6 @@ class SobelFactory {
   static Future<Uint8List?> sobel({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int depth,
     required int dx,
     required int dy,

@@ -17,7 +17,6 @@ class AdaptiveThresholdFactory {
   static Future<Uint8List?> adaptiveThreshold({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required double maxValue,
     required int adaptiveMethod,
     required int thresholdType,

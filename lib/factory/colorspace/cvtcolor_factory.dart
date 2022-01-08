@@ -17,7 +17,6 @@ class CvtColorFactory {
   static Future<Uint8List?> cvtColor({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int outputType,
   }) async {
     File _file;

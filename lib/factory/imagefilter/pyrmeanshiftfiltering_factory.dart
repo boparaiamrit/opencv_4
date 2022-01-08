@@ -17,7 +17,6 @@ class PyrMeanShiftFilteringFactory {
   static Future<Uint8List?> pyrMeanShiftFiltering({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required double spatialWindowRadius,
     required double colorWindowRadius,
   }) async {

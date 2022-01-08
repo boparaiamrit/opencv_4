@@ -17,7 +17,6 @@ class ApplyColorMapFactory {
   static Future<Uint8List?> applyColorMap({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int colorMap,
   }) async {
     File _file;

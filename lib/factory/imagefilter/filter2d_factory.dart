@@ -17,7 +17,6 @@ class Filter2DFactory {
   static Future<Uint8List?> filter2D({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int outputDepth,
     required List<int> kernelSize,
   }) async {

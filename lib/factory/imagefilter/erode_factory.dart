@@ -17,7 +17,6 @@ class ErodeFactory {
   static Future<Uint8List?> erode({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required List<double> kernelSize,
   }) async {
     File _file;

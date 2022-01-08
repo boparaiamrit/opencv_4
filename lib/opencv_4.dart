@@ -428,10 +428,7 @@ class Cv2 {
   }) async {
     /// Variable to store operation result
     final Uint8List? result = await Filter2DFactory.filter2D(
-        pathFrom: pathFrom,
-        pathString: pathString,
-        outputDepth: outputDepth,
-        kernelSize: kernelSize);
+        pathFrom: pathFrom, pathString: pathString, outputDepth: outputDepth, kernelSize: kernelSize);
 
     /// Function returns the response from method channel
     return result;
@@ -517,12 +514,11 @@ class Cv2 {
     required double colorWindowRadius,
   }) async {
     /// Variable to store operation result
-    final Uint8List? result =
-        await PyrMeanShiftFilteringFactory.pyrMeanShiftFiltering(
-            pathFrom: pathFrom,
-            pathString: pathString,
-            spatialWindowRadius: spatialWindowRadius,
-            colorWindowRadius: colorWindowRadius);
+    final Uint8List? result = await PyrMeanShiftFilteringFactory.pyrMeanShiftFiltering(
+        pathFrom: pathFrom,
+        pathString: pathString,
+        spatialWindowRadius: spatialWindowRadius,
+        colorWindowRadius: colorWindowRadius);
 
     /// Function returns the response from method channel
     return result;
@@ -579,10 +575,7 @@ class Cv2 {
   }) async {
     /// Variable to store operation result
     final Uint8List? result = await SqrBoxFilterFactory.sqrBoxFilter(
-        pathFrom: pathFrom,
-        pathString: pathString,
-        outputDepth: outputDepth,
-        kernelSize: kernelSize);
+        pathFrom: pathFrom, pathString: pathString, outputDepth: outputDepth, kernelSize: kernelSize);
 
     /// Function returns the response from method channel
     return result;
@@ -622,10 +615,7 @@ class Cv2 {
   }) async {
     /// Variable to store operation result
     final dynamic result = await DistanceTransformFactory.distanceTransform(
-        pathFrom: pathFrom,
-        pathString: pathString,
-        distanceType: distanceType,
-        maskSize: maskSize);
+        pathFrom: pathFrom, pathString: pathString, distanceType: distanceType, maskSize: maskSize);
 
     /// Function returns the response from method channel
     return result;
@@ -635,20 +625,19 @@ class Cv2 {
   static Future<dynamic> threshold({
     CVPathFrom pathFrom = CVPathFrom.ASSETS,
     required String pathString,
+    required Uint8List imageData,
     required double thresholdValue,
     required double maxThresholdValue,
     required int thresholdType,
-    Uint8List? imageData
   }) async {
     /// Variable to store operation result
     final dynamic result = await ThresholdFactory.threshold(
-      pathFrom: pathFrom,
-      pathString: pathString,
-      thresholdValue: thresholdValue,
-      maxThresholdValue: maxThresholdValue,
-      thresholdType: thresholdType,
-      imageData: imageData
-    );
+        pathFrom: pathFrom,
+        pathString: pathString,
+        thresholdValue: thresholdValue,
+        maxThresholdValue: maxThresholdValue,
+        thresholdType: thresholdType,
+        imageData: imageData);
 
     /// Function returns the response from method channel
     return result;

@@ -17,7 +17,6 @@ class BilateralFilterFactory {
   static Future<Uint8List?> bilateralFilter({
     required CVPathFrom pathFrom,
     required String pathString,
-    Uint8List? imageData,
     required int diameter,
     required int sigmaColor,
     required int sigmaSpace,
