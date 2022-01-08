@@ -2,6 +2,7 @@
  * Copyright (c) 2021 fgsoruco.
  * See LICENSE for more details.
  */
+
 ///[CVPathFrom] allows you to configure the path to process the images
 ///
 ///[URL] configure opencv for web images
@@ -12,4 +13,5 @@ enum CVPathFrom {
   URL,
   GALLERY_CAMERA,
   ASSETS,
+  DATA,
 }

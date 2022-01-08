@@ -4,6 +4,7 @@
  */
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:opencv_4/factory/pathfrom.dart';
@@ -16,6 +17,7 @@ class BilateralFilterFactory {
   static Future<Uint8List?> bilateralFilter({
     required CVPathFrom pathFrom,
     required String pathString,
+    Uint8List? imageData,
     required int diameter,
     required int sigmaColor,
     required int sigmaSpace,
@@ -59,6 +61,7 @@ class BilateralFilterFactory {
 
         break;
       case CVPathFrom.ASSETS:
+      case CVPathFrom.DATA:
         _fileAssets = await Utils.imgAssets2Uint8List(pathString);
         result = await platform.invokeMethod('bilateralFilter', {
           "pathType": 3,

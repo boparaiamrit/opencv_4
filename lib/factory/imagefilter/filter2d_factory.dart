@@ -4,6 +4,7 @@
  */
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:opencv_4/factory/pathfrom.dart';
@@ -16,6 +17,7 @@ class Filter2DFactory {
   static Future<Uint8List?> filter2D({
     required CVPathFrom pathFrom,
     required String pathString,
+    Uint8List? imageData,
     required int outputDepth,
     required List<int> kernelSize,
   }) async {
@@ -58,6 +60,7 @@ class Filter2DFactory {
 
         break;
       case CVPathFrom.ASSETS:
+      case CVPathFrom.DATA:
         _fileAssets = await Utils.imgAssets2Uint8List(pathString);
         result = await platform.invokeMethod(
           'filter2D',

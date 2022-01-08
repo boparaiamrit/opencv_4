@@ -17,6 +17,7 @@ class CvtColorFactory {
   static Future<Uint8List?> cvtColor({
     required CVPathFrom pathFrom,
     required String pathString,
+    Uint8List? imageData,
     required int outputType,
   }) async {
     File _file;
@@ -43,6 +44,7 @@ class CvtColorFactory {
 
         break;
       case CVPathFrom.ASSETS:
+      case CVPathFrom.DATA:
         _fileAssets = await Utils.imgAssets2Uint8List(pathString);
         result = await platform.invokeMethod('cvtColor', {
           "pathType": 3,

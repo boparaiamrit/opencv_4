@@ -4,6 +4,7 @@
  */
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:opencv_4/factory/pathfrom.dart';
@@ -16,6 +17,7 @@ class AdaptiveThresholdFactory {
   static Future<Uint8List?> adaptiveThreshold({
     required CVPathFrom pathFrom,
     required String pathString,
+    Uint8List? imageData,
     required double maxValue,
     required int adaptiveMethod,
     required int thresholdType,
@@ -66,6 +68,7 @@ class AdaptiveThresholdFactory {
 
         break;
       case CVPathFrom.ASSETS:
+      case CVPathFrom.DATA:
         _fileAssets = await Utils.imgAssets2Uint8List(pathString);
         result = await platform.invokeMethod('adaptiveThreshold', {
           "pathType": 3,

@@ -4,6 +4,7 @@
  */
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:opencv_4/factory/pathfrom.dart';
@@ -16,6 +17,7 @@ class ThresholdFactory {
   static Future<Uint8List?> threshold({
     required CVPathFrom pathFrom,
     required String pathString,
+    Uint8List? imageData,
     required double thresholdValue,
     required double maxThresholdValue,
     required int thresholdType,
@@ -57,6 +59,19 @@ class ThresholdFactory {
           'maxThresholdValue': maxThresholdValue,
           'thresholdType': thresholdType
         });
+        break;
+      case CVPathFrom.DATA:
+        result = await platform.invokeMethod(
+          'blur',
+          {
+            "pathType": 4,
+            "pathString": '',
+            "data": imageData!,
+            'thresholdValue': thresholdValue,
+            'maxThresholdValue': maxThresholdValue,
+            'thresholdType': thresholdType
+          },
+        );
         break;
       default:
         _fileAssets = await Utils.imgAssets2Uint8List(pathString);

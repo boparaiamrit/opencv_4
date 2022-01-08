@@ -4,6 +4,7 @@
  */
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:opencv_4/factory/pathfrom.dart';
@@ -16,6 +17,7 @@ class LaplacianFactory {
   static Future<Uint8List?> laplacian({
     required CVPathFrom pathFrom,
     required String pathString,
+    Uint8List? imageData,
     required int depth,
   }) async {
     File _file;
@@ -41,25 +43,16 @@ class LaplacianFactory {
         _file = await DefaultCacheManager().getSingleFile(pathString);
         result = await platform.invokeMethod(
           'laplacian',
-          {
-            "pathType": 2,
-            "pathString": '',
-            "data": await _file.readAsBytes(),
-            'depth': depthTemp
-          },
+          {"pathType": 2, "pathString": '', "data": await _file.readAsBytes(), 'depth': depthTemp},
         );
 
         break;
       case CVPathFrom.ASSETS:
+      case CVPathFrom.DATA:
         _fileAssets = await Utils.imgAssets2Uint8List(pathString);
         result = await platform.invokeMethod(
           'laplacian',
-          {
-            "pathType": 3,
-            "pathString": '',
-            "data": _fileAssets,
-            'depth': depthTemp
-          },
+          {"pathType": 3, "pathString": '', "data": _fileAssets, 'depth': depthTemp},
         );
         break;
     }
