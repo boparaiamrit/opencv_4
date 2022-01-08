@@ -14,7 +14,7 @@ class ThresholdFactory {
             when (pathType){
                 1 -> result.success(thresholdS(pathData, thresholdValue, maxThresholdValue, thresholdType))
                 2 -> result.success(thresholdB(data, thresholdValue, maxThresholdValue, thresholdType))
-                3 -> result.success(thresholdB(data, thresholdValue, maxThresholdValue, thresholdType)),
+                3 -> result.success(thresholdB(data, thresholdValue, maxThresholdValue, thresholdType))
                 4 -> result.success(thresholdB(data, thresholdValue, maxThresholdValue, thresholdType))
             }
         }
