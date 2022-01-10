@@ -31,7 +31,7 @@ class HoughCirclesFactory {
     Uint8List? result;
     switch (pathFrom) {
       case CVPathFrom.GALLERY_CAMERA:
-        result = await platform.invokeMethod('threshold', {
+        result = await platform.invokeMethod('houghCircles', {
           "pathType": 1,
           "pathString": pathString,
           "data": Uint8List(0),
@@ -45,7 +45,7 @@ class HoughCirclesFactory {
         break;
       case CVPathFrom.URL:
         _file = await DefaultCacheManager().getSingleFile(pathString);
-        result = await platform.invokeMethod('threshold', {
+        result = await platform.invokeMethod('houghCircles', {
           "pathType": 2,
           "pathString": '',
           "data": await _file.readAsBytes(),
@@ -60,7 +60,7 @@ class HoughCirclesFactory {
         break;
       case CVPathFrom.ASSETS:
         _fileAssets = await Utils.imgAssets2Uint8List(pathString);
-        result = await platform.invokeMethod('threshold', {
+        result = await platform.invokeMethod('houghCircles', {
           "pathType": 3,
           "pathString": '',
           "data": _fileAssets,
@@ -74,7 +74,7 @@ class HoughCirclesFactory {
         break;
       case CVPathFrom.DATA:
         result = await platform.invokeMethod(
-          'threshold',
+          'houghCircles',
           {
             "pathType": 4,
             "pathString": '',
@@ -90,7 +90,7 @@ class HoughCirclesFactory {
         break;
       default:
         _fileAssets = await Utils.imgAssets2Uint8List(pathString);
-        result = await platform.invokeMethod('threshold', {
+        result = await platform.invokeMethod('houghCircles', {
           "pathType": 3,
           "pathString": '',
           "data": _fileAssets,
