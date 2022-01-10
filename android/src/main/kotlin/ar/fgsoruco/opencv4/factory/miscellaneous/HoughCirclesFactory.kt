@@ -81,7 +81,8 @@ class HoughCirclesFactory {
 
                 if (circles.cols() > 0) {
                     for (x in 1..circles.cols()) {
-                        val circleVex = circles.get(0, x)
+                        val circleVex = circles.get(0, x) ?: break
+
                         val point = Point(circleVex[0], circleVex[1])
 
                         Imgproc.circle(src, point, circleVex[2].toInt(), Scalar(255.0, 0.0, 0.0), 1)
