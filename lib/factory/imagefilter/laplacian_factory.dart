@@ -7,7 +7,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:opencv_4/factory/pathfrom.dart';
+import 'package:opencv_4/factory/path_from.dart';
 import 'package:opencv_4/factory/utils.dart';
 
 ///Class for process [Laplacian]

@@ -10,17 +10,20 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:opencv_4/factory/path_from.dart';
 import 'package:opencv_4/factory/utils.dart';
 
-///Class for process [Threshold]
-class ThresholdFactory {
+///Class for process [HoughCircles]
+class HoughCirclesFactory {
   static const platform = const MethodChannel('opencv_4');
 
-  static Future<Uint8List?> threshold({
+  static Future<Uint8List?> houghCircles({
     required CVPathFrom pathFrom,
     required String pathString,
     required Uint8List imageData,
-    required double thresholdValue,
-    required double maxThresholdValue,
-    required int thresholdType,
+    required double dp,
+    required double minDist,
+    required double param1,
+    required double param2,
+    required int minRadius,
+    required int maxRadius,
   }) async {
     File _file;
     Uint8List _fileAssets;
@@ -32,9 +35,12 @@ class ThresholdFactory {
           "pathType": 1,
           "pathString": pathString,
           "data": Uint8List(0),
-          'thresholdValue': thresholdValue,
-          'maxThresholdValue': maxThresholdValue,
-          'thresholdType': thresholdType
+          "dp": dp,
+          "minDist": minDist,
+          "param1": param1,
+          "param2": param2,
+          "minRadius": minRadius,
+          "maxRadius": maxRadius,
         });
         break;
       case CVPathFrom.URL:
@@ -43,9 +49,12 @@ class ThresholdFactory {
           "pathType": 2,
           "pathString": '',
           "data": await _file.readAsBytes(),
-          'thresholdValue': thresholdValue,
-          'maxThresholdValue': maxThresholdValue,
-          'thresholdType': thresholdType
+          "dp": dp,
+          "minDist": minDist,
+          "param1": param1,
+          "param2": param2,
+          "minRadius": minRadius,
+          "maxRadius": maxRadius,
         });
 
         break;
@@ -55,9 +64,12 @@ class ThresholdFactory {
           "pathType": 3,
           "pathString": '',
           "data": _fileAssets,
-          'thresholdValue': thresholdValue,
-          'maxThresholdValue': maxThresholdValue,
-          'thresholdType': thresholdType
+          "dp": dp,
+          "minDist": minDist,
+          "param1": param1,
+          "param2": param2,
+          "minRadius": minRadius,
+          "maxRadius": maxRadius,
         });
         break;
       case CVPathFrom.DATA:
@@ -67,9 +79,12 @@ class ThresholdFactory {
             "pathType": 4,
             "pathString": '',
             "data": imageData,
-            'thresholdValue': thresholdValue,
-            'maxThresholdValue': maxThresholdValue,
-            'thresholdType': thresholdType
+            "dp": dp,
+            "minDist": minDist,
+            "param1": param1,
+            "param2": param2,
+            "minRadius": minRadius,
+            "maxRadius": maxRadius,
           },
         );
         break;
@@ -79,9 +94,12 @@ class ThresholdFactory {
           "pathType": 3,
           "pathString": '',
           "data": _fileAssets,
-          'thresholdValue': thresholdValue,
-          'maxThresholdValue': maxThresholdValue,
-          'thresholdType': thresholdType
+          "dp": dp,
+          "minDist": minDist,
+          "param1": param1,
+          "param2": param2,
+          "minRadius": minRadius,
+          "maxRadius": maxRadius,
         });
     }
 

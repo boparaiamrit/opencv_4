@@ -20,8 +20,9 @@ import 'package:opencv_4/factory/imagefilter/sobel_factory.dart';
 import 'package:opencv_4/factory/imagefilter/sqrboxfilter_factory.dart';
 import 'package:opencv_4/factory/miscellaneoustransform/adaptivethreshold_factory.dart';
 import 'package:opencv_4/factory/miscellaneoustransform/distancetransform_factory.dart';
+import 'package:opencv_4/factory/miscellaneoustransform/houghcircles_factory.dart';
 import 'package:opencv_4/factory/miscellaneoustransform/threshold_factory.dart';
-import 'package:opencv_4/factory/pathfrom.dart';
+import 'package:opencv_4/factory/path_from.dart';
 
 /// class that contains the implementation of OpenCV modules
 class Cv2 {
@@ -638,6 +639,34 @@ class Cv2 {
         maxThresholdValue: maxThresholdValue,
         thresholdType: thresholdType,
         imageData: imageData);
+
+    /// Function returns the response from method channel
+    return result;
+  }
+
+  static Future<dynamic> houghCircles({
+    CVPathFrom pathFrom = CVPathFrom.ASSETS,
+    required String pathString,
+    required Uint8List imageData,
+    required double dp,
+    required double minDist,
+    required double param1,
+    required double param2,
+    required int minRadius,
+    required int maxRadius,
+  }) async {
+    /// Variable to store operation result
+    final dynamic result = await HoughCirclesFactory.houghCircles(
+      pathFrom: pathFrom,
+      pathString: pathString,
+      imageData: imageData,
+      dp: dp,
+      minDist: minDist,
+      param1: param1,
+      param2: param2,
+      minRadius: minRadius,
+      maxRadius: maxRadius,
+    );
 
     /// Function returns the response from method channel
     return result;

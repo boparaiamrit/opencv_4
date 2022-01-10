@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:opencv_4/factory/pathfrom.dart';
+import 'package:opencv_4/factory/path_from.dart';
 import 'package:opencv_4/opencv_4.dart';
 //uncomment when image_picker is installed
 import 'package:image_picker/image_picker.dart';

@@ -6,6 +6,7 @@ import ar.fgsoruco.opencv4.factory.colorspace.CvtColorFactory
 import ar.fgsoruco.opencv4.factory.imagefilter.*
 import ar.fgsoruco.opencv4.factory.miscellaneous.AdaptiveThresholdFactory
 import ar.fgsoruco.opencv4.factory.miscellaneous.DistanceTransformFactory
+import ar.fgsoruco.opencv4.factory.miscellaneous.HoughCirclesFactory
 import ar.fgsoruco.opencv4.factory.miscellaneous.ThresholdFactory
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -13,7 +14,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 import org.opencv.android.OpenCVLoader
 import org.opencv.core.Core
 
@@ -305,6 +305,23 @@ class Opencv4Plugin: FlutterPlugin, MethodCallHandler {
                   call.argument<Double>("thresholdValue") as Double,
                   call.argument<Double>("maxThresholdValue") as Double,
                   call.argument<Int>("thresholdType") as Int,
+                  result)
+        } catch (e: Exception) {
+          result.error("OpenCV-Error", "Android: "+e.message, e)
+        }
+      }
+      "houghCircles" -> {
+        try {
+          HoughCirclesFactory.process(
+                  call.argument<Int>("pathType") as Int,
+                  call.argument<String>("pathString") as String,
+                  call.argument<ByteArray>("data") as ByteArray,
+                  call.argument<Double>("dp") as Double,
+                  call.argument<Double>("minDist") as Double,
+                  call.argument<Double>("param1") as Double,
+                  call.argument<Double>("param2") as Double,
+                  call.argument<Int>("minRadius") as Int,
+                  call.argument<Int>("maxRadius") as Int,
                   result)
         } catch (e: Exception) {
           result.error("OpenCV-Error", "Android: "+e.message, e)
