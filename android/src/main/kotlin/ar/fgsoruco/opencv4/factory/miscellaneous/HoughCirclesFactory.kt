@@ -35,9 +35,6 @@ class HoughCirclesFactory {
                 val filename = pathData.replace("file://", "")
                 val src = Imgcodecs.imread(filename)
 
-//                // Convert the image to Gray
-//                Imgproc.cvtColor(src, srcGray, Imgproc.COLOR_BGR2GRAY)
-
                 // HoughCircles
                 Imgproc.HoughCircles(src, circles, Imgproc.HOUGH_GRADIENT, dp, minDist, param1, param2, minRadius, maxRadius)
 
@@ -46,7 +43,7 @@ class HoughCirclesFactory {
                         val circleVex = circles.get(0, x) ?: break
                         val point = Point(circleVex[0], circleVex[1])
 
-                        Imgproc.circle(src, point, circleVex[2].toInt(), Scalar(255.0, 0.0, 0.0), 1)
+                        Imgproc.circle(src, point, circleVex[2].toInt(), Scalar(0.0, 0.0, 255.0), 2)
                     }
                 }
 
@@ -74,9 +71,6 @@ class HoughCirclesFactory {
                 // Decode image from input byte array
                 val src = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-//                // Convert the image to Gray
-//                Imgproc.cvtColor(src, srcGray, Imgproc.COLOR_BGR2GRAY)
-
                 // HoughCircles
                 Imgproc.HoughCircles(src, circles, Imgproc.HOUGH_GRADIENT, dp, minDist, param1, param2, minRadius, maxRadius)
 
@@ -86,7 +80,7 @@ class HoughCirclesFactory {
 
                         val point = Point(circleVex[0], circleVex[1])
 
-                        Imgproc.circle(src, point, circleVex[2].toInt(), Scalar(255.0, 0.0, 0.0), 1)
+                        Imgproc.circle(src, point, circleVex[2].toInt(), Scalar(0.0, 0.0, 255.0), 2)
                     }
                 }
 
