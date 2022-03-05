@@ -20,7 +20,9 @@ import 'package:opencv_4/factory/imagefilter/sobel_factory.dart';
 import 'package:opencv_4/factory/imagefilter/sqrboxfilter_factory.dart';
 import 'package:opencv_4/factory/miscellaneoustransform/adaptivethreshold_factory.dart';
 import 'package:opencv_4/factory/miscellaneoustransform/distancetransform_factory.dart';
+import 'package:opencv_4/factory/miscellaneoustransform/green_threshold_factory.dart';
 import 'package:opencv_4/factory/miscellaneoustransform/houghcircles_factory.dart';
+import 'package:opencv_4/factory/miscellaneoustransform/red_threshold_factory.dart';
 import 'package:opencv_4/factory/miscellaneoustransform/threshold_factory.dart';
 import 'package:opencv_4/factory/path_from.dart';
 
@@ -622,7 +624,7 @@ class Cv2 {
     return result;
   }
 
-  /// [distanceTransform] function of Module: Miscellaneous Image Transformations
+  /// [threshold] function of Module: Miscellaneous Image Transformations
   static Future<dynamic> threshold({
     CVPathFrom pathFrom = CVPathFrom.ASSETS,
     required String pathString,
@@ -639,6 +641,34 @@ class Cv2 {
         maxThresholdValue: maxThresholdValue,
         thresholdType: thresholdType,
         imageData: imageData);
+
+    /// Function returns the response from method channel
+    return result;
+  }
+
+  /// [redThreshold] function of Module: Miscellaneous Image Transformations
+  static Future<dynamic> redThreshold(
+      {CVPathFrom pathFrom = CVPathFrom.ASSETS, required String pathString, required Uint8List imageData}) async {
+    /// Variable to store operation result
+    final dynamic result = await RedThresholdFactory.redThreshold(
+      pathFrom: pathFrom,
+      pathString: pathString,
+      imageData: imageData,
+    );
+
+    /// Function returns the response from method channel
+    return result;
+  }
+
+  /// [greenThreshold] function of Module: Miscellaneous Image Transformations
+  static Future<dynamic> greenThreshold(
+      {CVPathFrom pathFrom = CVPathFrom.ASSETS, required String pathString, required Uint8List imageData}) async {
+    /// Variable to store operation result
+    final dynamic result = await GreenThresholdFactory.greenThreshold(
+      pathFrom: pathFrom,
+      pathString: pathString,
+      imageData: imageData,
+    );
 
     /// Function returns the response from method channel
     return result;
