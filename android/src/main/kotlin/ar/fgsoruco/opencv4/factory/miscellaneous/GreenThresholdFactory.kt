@@ -42,22 +42,33 @@ class GreenThresholdFactory {
                 Imgproc.cvtColor(srcImage, hcvImage, Imgproc.COLOR_BGR2HSV)
 
                 val greenMask = Mat()
+                val whiteMask = Mat()
+                val finalMask = Mat()
 
                 Core.inRange(
                     hcvImage,
-                    Scalar(40.0, 125.0, 125.0),
+                    Scalar(40.0, 0.0, 200.0),
                     Scalar(90.0, 255.0, 255.0),
                     greenMask
                 )
 
+                Core.inRange(
+                    hcvImage,
+                    Scalar(0.0, 0.0, 200.0),
+                    Scalar(180.0, 0.0, 255.0),
+                    whiteMask
+                )
+
+                Core.add(greenMask, whiteMask, finalMask)
+
                 val matOfByte = MatOfByte()
-                Imgcodecs.imencode(".jpg", greenMask, matOfByte)
+                Imgcodecs.imencode(".jpg", finalMask, matOfByte)
                 byteArray = matOfByte.toArray()
             } catch (e: java.lang.Exception) {
                 println("OpenCV Error: $e")
             }
 
-            return byteArray;
+            return byteArray
         }
 
         //Module: Miscellaneous Image Transformations
@@ -73,22 +84,33 @@ class GreenThresholdFactory {
                 Imgproc.cvtColor(srcImage, hcvImage, Imgproc.COLOR_BGR2HSV)
 
                 val greenMask = Mat()
+                val whiteMask = Mat()
+                val finalMask = Mat()
 
                 Core.inRange(
                     hcvImage,
-                    Scalar(40.0, 125.0, 125.0),
+                    Scalar(40.0, 0.0, 200.0),
                     Scalar(90.0, 255.0, 255.0),
                     greenMask
                 )
 
+                Core.inRange(
+                    hcvImage,
+                    Scalar(0.0, 0.0, 200.0),
+                    Scalar(180.0, 0.0, 255.0),
+                    whiteMask
+                )
+
+                Core.add(greenMask, whiteMask, finalMask)
+
                 val matOfByte = MatOfByte()
-                Imgcodecs.imencode(".jpg", greenMask, matOfByte)
+                Imgcodecs.imencode(".jpg", finalMask, matOfByte)
                 byteArray = matOfByte.toArray()
             } catch (e: java.lang.Exception) {
                 println("OpenCV Error: $e")
             }
 
-            return byteArray;
+            return byteArray
         }
     }
 }

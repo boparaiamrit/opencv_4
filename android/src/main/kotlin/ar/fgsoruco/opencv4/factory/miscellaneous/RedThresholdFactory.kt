@@ -44,25 +44,34 @@ class RedThresholdFactory {
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val redMask = Mat()
+                val whiteMask = Mat()
+                val finalMask = Mat()
 
-                Core.inRange(hcvImage, Scalar(0.0, 125.0, 125.0), Scalar(40.0, 255.0, 255.0), mask1)
+                Core.inRange(hcvImage, Scalar(0.0, 0.0, 200.0), Scalar(40.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hcvImage,
-                    Scalar(160.0, 125.0, 125.0),
+                    Scalar(160.0, 0.0, 200.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
+                Core.inRange(
+                    hcvImage,
+                    Scalar(0.0, 0.0, 200.0),
+                    Scalar(180.0, 0.0, 255.0),
+                    whiteMask
+                )
 
                 Core.add(mask1, mask2, redMask)
+                Core.add(redMask, whiteMask, finalMask)
 
                 val matOfByte = MatOfByte()
-                Imgcodecs.imencode(".jpg", redMask, matOfByte)
+                Imgcodecs.imencode(".jpg", finalMask, matOfByte)
                 byteArray = matOfByte.toArray()
             } catch (e: java.lang.Exception) {
                 println("OpenCV Error: $e")
             }
 
-            return byteArray;
+            return byteArray
         }
 
         //Module: Miscellaneous Image Transformations
@@ -80,19 +89,28 @@ class RedThresholdFactory {
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val redMask = Mat()
+                val whiteMask = Mat()
+                val finalMask = Mat()
 
-                Core.inRange(hcvImage, Scalar(0.0, 125.0, 125.0), Scalar(40.0, 255.0, 255.0), mask1)
+                Core.inRange(hcvImage, Scalar(0.0, 0.0, 200.0), Scalar(40.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hcvImage,
-                    Scalar(160.0, 125.0, 125.0),
+                    Scalar(160.0, 0.0, 200.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
+                Core.inRange(
+                    hcvImage,
+                    Scalar(0.0, 0.0, 200.0),
+                    Scalar(180.0, 0.0, 255.0),
+                    whiteMask
+                )
 
                 Core.add(mask1, mask2, redMask)
+                Core.add(redMask, whiteMask, finalMask)
 
                 val matOfByte = MatOfByte()
-                Imgcodecs.imencode(".jpg", redMask, matOfByte)
+                Imgcodecs.imencode(".jpg", finalMask, matOfByte)
                 byteArray = matOfByte.toArray()
             } catch (e: java.lang.Exception) {
                 println("OpenCV Error: $e")
