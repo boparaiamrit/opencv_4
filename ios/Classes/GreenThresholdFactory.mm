@@ -3,9 +3,9 @@
 //  Created by fgsoruco.
 //
 
-#import "RedThresholdFactory.h"
+#import "GreenThresholdFactory.h"
 
-@implementation RedThresholdFactory
+@implementation GreenThresholdFactory
 
 + (void)processWhitPathType:(int)pathType pathString:(NSString *)pathString data:(FlutterStandardTypedData *)data result: (FlutterResult) result{
     
@@ -108,23 +108,18 @@ FlutterStandardTypedData * thresholdS(NSString * pathString) {
         CFRelease(image_provider);
         CFRelease(file_data_ref);
         
-        
         cv::Mat hcvImage;
         
         cv::cvtColor(src, hcvImage, cv::COLOR_BGR2HSV);
-        
-        cv::Mat mask1;
-        cv::Mat mask2;
-        cv::Mat redMask;
+
+        cv::Mat greenMask;
         cv::Mat whiteMask;
         cv::Mat dst;
-        
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(40.0, 255.0, 255.0), mask1);
-        cv::inRange(hcvImage, cv::Scalar(160.0, 0.0, 200.0), cv::Scalar(180.0, 255.0, 255.0), mask2);
+
+        cv::inRange(hcvImage, cv::Scalar(40.0, 0.0, 200.0), cv::Scalar(90.0, 255.0, 255.0), greenMask);
         cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(180.0, 0.0, 255.0), whiteMask);
 
-        cv::add(mask1, mask2, redMask);
-        cv::add(redMask, whiteMask, dst);
+        cv::add(greenMask, whiteMask, dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         
@@ -237,21 +232,17 @@ FlutterStandardTypedData * thresholdB(FlutterStandardTypedData * data) {
         resultado = [FlutterStandardTypedData typedDataWithBytes: data.data];
     } else {
         cv::Mat hcvImage;
-        
+
         cv::cvtColor(src, hcvImage, cv::COLOR_BGR2HSV);
-        
-        cv::Mat mask1;
-        cv::Mat mask2;
-        cv::Mat redMask;
+
+        cv::Mat greenMask;
         cv::Mat whiteMask;
         cv::Mat dst;
-        
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(40.0, 255.0, 255.0), mask1);
-        cv::inRange(hcvImage, cv::Scalar(160.0, 0.0, 200.0), cv::Scalar(180.0, 255.0, 255.0), mask2);
+
+        cv::inRange(hcvImage, cv::Scalar(40.0, 0.0, 200.0), cv::Scalar(90.0, 255.0, 255.0), greenMask);
         cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(180.0, 0.0, 255.0), whiteMask);
 
-        cv::add(mask1, mask2, redMask);
-        cv::add(redMask, whiteMask, dst);
+        cv::add(greenMask, whiteMask, dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         

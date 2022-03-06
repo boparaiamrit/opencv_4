@@ -18,6 +18,8 @@
 #import "AdaptiveThresholdFactory.h"
 #import "DistanceTransformFactory.h"
 #import "ThresholdFactory.h"
+#import "RedThresholdFactory.h"
+#import "GreenThresholdFactory.h"
 
 @implementation Opencv4Plugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -254,14 +256,14 @@
         NSString* pathString = call.arguments[@"pathString"];
         FlutterStandardTypedData* data = call.arguments[@"data"];
 
-        [ThresholdFactory processWhitPathType:pathType pathString:pathString data:data thresholdValue:thresholdValue maxThresholdValue:maxThresholdValue thresholdType:thresholdType result:result];
+        [RedThresholdFactory processWhitPathType:pathType pathString:pathString data:data result:result];
     }else if ([@"greenThreshold" isEqualToString:call.method]) {
 
         int pathType = [call.arguments[@"pathType"] intValue];
         NSString* pathString = call.arguments[@"pathString"];
         FlutterStandardTypedData* data = call.arguments[@"data"];
 
-        [ThresholdFactory processWhitPathType:pathType pathString:pathString data:data thresholdValue:thresholdValue maxThresholdValue:maxThresholdValue thresholdType:thresholdType result:result];
+        [GreenThresholdFactory processWhitPathType:pathType pathString:pathString data:data result:result];
     }
     else if ([@"applyColorMap" isEqualToString:call.method]) {
 
