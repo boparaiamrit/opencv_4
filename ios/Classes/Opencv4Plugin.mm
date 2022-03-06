@@ -248,6 +248,20 @@
 
 
         [ThresholdFactory processWhitPathType:pathType pathString:pathString data:data thresholdValue:thresholdValue maxThresholdValue:maxThresholdValue thresholdType:thresholdType result:result];
+    }else if ([@"redThreshold" isEqualToString:call.method]) {
+
+        int pathType = [call.arguments[@"pathType"] intValue];
+        NSString* pathString = call.arguments[@"pathString"];
+        FlutterStandardTypedData* data = call.arguments[@"data"];
+
+        [ThresholdFactory processWhitPathType:pathType pathString:pathString data:data thresholdValue:thresholdValue maxThresholdValue:maxThresholdValue thresholdType:thresholdType result:result];
+    }else if ([@"greenThreshold" isEqualToString:call.method]) {
+
+        int pathType = [call.arguments[@"pathType"] intValue];
+        NSString* pathString = call.arguments[@"pathString"];
+        FlutterStandardTypedData* data = call.arguments[@"data"];
+
+        [ThresholdFactory processWhitPathType:pathType pathString:pathString data:data thresholdValue:thresholdValue maxThresholdValue:maxThresholdValue thresholdType:thresholdType result:result];
     }
     else if ([@"applyColorMap" isEqualToString:call.method]) {
 
