@@ -11,16 +11,16 @@
     
     switch (pathType) {
         case 1:
-            result(thresholdS(pathString));
+            result(redThresholdS(pathString));
             break;
         case 2:
-            result(thresholdB(data));
+            result(redThresholdB(data));
             break;
         case 3:
-            result(thresholdB(data));
+            result(redThresholdB(data));
             break;
         case 4:
-            result(thresholdB(data));
+            result(redThresholdB(data));
             break;
         
         default:
@@ -30,7 +30,7 @@
 }
 
 
-FlutterStandardTypedData * thresholdS(NSString * pathString) {
+FlutterStandardTypedData * redThresholdS(NSString * pathString) {
     
 
     CGColorSpaceRef colorSpace;
@@ -171,7 +171,7 @@ FlutterStandardTypedData * thresholdS(NSString * pathString) {
     return resultado;
 }
 
-FlutterStandardTypedData * thresholdB(FlutterStandardTypedData * data) {
+FlutterStandardTypedData * redThresholdB(FlutterStandardTypedData * data) {
     
 
     CGColorSpaceRef colorSpace;
