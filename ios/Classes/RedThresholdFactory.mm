@@ -22,6 +22,7 @@
         case 4:
             result(redThresholdB(data));
             break;
+            
         default:
             break;
     }
@@ -100,9 +101,11 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString) {
         CFRelease(image_provider);
         CFRelease(file_data_ref);
         
+        cv::Mat bgrImage;
         cv::Mat hcvImage;
         
-        cv::cvtColor(src, hcvImage, cv::COLOR_BGR2HSV);
+        cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
+        cv::cvtColor(bgrImage, hcvImage, cv::COLOR_BGR2HSV);
         
         cv::Mat mask1;
         cv::Mat mask2;
@@ -110,9 +113,9 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString) {
         cv::Mat whiteMask;
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0, 0.0), cv::Scalar(40.0, 255.0, 255.0, 255.0), mask1);
-        cv::inRange(hcvImage, cv::Scalar(160.0, 0.0, 200.0, 0.0), cv::Scalar(180.0, 255.0, 255.0, 255.0), mask2);
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0, 0.0), cv::Scalar(180.0, 0.0, 255.0, 255.0), whiteMask);
+        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(40.0, 255.0, 255.0), mask1);
+        cv::inRange(hcvImage, cv::Scalar(160.0, 0.0, 200.0), cv::Scalar(180.0, 255.0, 255.0), mask2);
+        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(180.0, 0.0, 255.0), whiteMask);
         
         cv::add(mask1, mask2, redMask);
         cv::add(redMask, whiteMask, dst);
@@ -226,9 +229,11 @@ FlutterStandardTypedData * redThresholdB(FlutterStandardTypedData * data) {
     if(src.empty()){
         resultado = [FlutterStandardTypedData typedDataWithBytes: data.data];
     } else {
+        cv::Mat bgrImage;
         cv::Mat hcvImage;
         
-        cv::cvtColor(src, hcvImage, cv::COLOR_BGR2HSV);
+        cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
+        cv::cvtColor(bgrImage, hcvImage, cv::COLOR_BGR2HSV);
         
         cv::Mat mask1;
         cv::Mat mask2;
@@ -236,9 +241,9 @@ FlutterStandardTypedData * redThresholdB(FlutterStandardTypedData * data) {
         cv::Mat whiteMask;
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0, 0.0), cv::Scalar(40.0, 255.0, 255.0, 255.0), mask1);
-        cv::inRange(hcvImage, cv::Scalar(160.0, 0.0, 200.0, 0.0), cv::Scalar(180.0, 255.0, 255.0, 255.0), mask2);
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0, 0.0), cv::Scalar(180.0, 0.0, 255.0, 255.0), whiteMask);
+        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(40.0, 255.0, 255.0), mask1);
+        cv::inRange(hcvImage, cv::Scalar(160.0, 0.0, 200.0), cv::Scalar(180.0, 255.0, 255.0), mask2);
+        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(180.0, 0.0, 255.0), whiteMask);
         
         cv::add(mask1, mask2, redMask);
         cv::add(redMask, whiteMask, dst);
