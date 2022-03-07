@@ -26,13 +26,9 @@
         default:
             break;
     }
-    
 }
 
-
 FlutterStandardTypedData * redThresholdS(NSString * pathString) {
-    
-
     CGColorSpaceRef colorSpace;
     const char * suffix;
     int bytesInFile;
@@ -58,7 +54,6 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString) {
     NSData *imgOriginal = [NSData dataWithBytes: file_data.data()
                                    length: bytesInFile];
     
-    
     suffix = strrchr(command, '.');
     if (!suffix || suffix == command) {
         suffix = "";
@@ -68,10 +63,7 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString) {
         puedePasar = true;
     }
 
-    
     if (puedePasar) {
-
-        
         CFDataRef file_data_ref = CFDataCreateWithBytesNoCopy(NULL, fileData.data(),
                                                               bytesInFile,
                                                               kCFAllocatorNull);
@@ -102,12 +94,12 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString) {
                                                          colorSpace,                 // Colorspace
                                                          kCGImageAlphaNoneSkipLast |
                                                          kCGBitmapByteOrderDefault); // Bitmap info flags
+
         CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image);
         CGContextRelease(contextRef);
         CFRelease(image);
         CFRelease(image_provider);
         CFRelease(file_data_ref);
-        
         
         cv::Mat hcvImage;
         
@@ -163,7 +155,6 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString) {
         }
 
         resultado = [FlutterStandardTypedData typedDataWithBytes: imgConvert];
-        
     } else {
         resultado = [FlutterStandardTypedData typedDataWithBytes: imgOriginal];
     }

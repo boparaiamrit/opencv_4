@@ -26,13 +26,9 @@
         default:
             break;
     }
-    
 }
 
-
 FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
-    
-
     CGColorSpaceRef colorSpace;
     const char * suffix;
     int bytesInFile;
@@ -40,7 +36,6 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
     std::vector<uint8_t> fileData;
     bool puedePasar = false;
 
-    
     FlutterStandardTypedData* resultado;
     
     command = [pathString cStringUsingEncoding:NSUTF8StringEncoding];
@@ -70,8 +65,6 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
 
     
     if (puedePasar) {
-
-        
         CFDataRef file_data_ref = CFDataCreateWithBytesNoCopy(NULL, fileData.data(),
                                                               bytesInFile,
                                                               kCFAllocatorNull);
@@ -158,7 +151,6 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
         }
 
         resultado = [FlutterStandardTypedData typedDataWithBytes: imgConvert];
-        
     } else {
         resultado = [FlutterStandardTypedData typedDataWithBytes: imgOriginal];
     }
