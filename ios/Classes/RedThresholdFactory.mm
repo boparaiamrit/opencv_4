@@ -113,9 +113,9 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString) {
         cv::Mat whiteMask;
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(40.0, 255.0, 255.0), mask1);
-        cv::inRange(hcvImage, cv::Scalar(160.0, 0.0, 200.0), cv::Scalar(180.0, 255.0, 255.0), mask2);
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(180.0, 0.0, 255.0), whiteMask);
+        cv::inRange(hcvImage, cv::Scalar(0, 0, 200), cv::Scalar(40, 255, 255), mask1);
+        cv::inRange(hcvImage, cv::Scalar(160, 0, 200), cv::Scalar(180, 255, 255), mask2);
+        cv::inRange(hcvImage, cv::Scalar(0, 0, 200), cv::Scalar(180, 0, 255), whiteMask);
         
         cv::add(mask1, mask2, redMask);
         cv::add(redMask, whiteMask, dst);
@@ -224,8 +224,7 @@ FlutterStandardTypedData * redThresholdB(FlutterStandardTypedData * data) {
     } else {
         src = cv::Mat();
     }
-    
-    
+
     if(src.empty()){
         resultado = [FlutterStandardTypedData typedDataWithBytes: data.data];
     } else {
@@ -241,9 +240,9 @@ FlutterStandardTypedData * redThresholdB(FlutterStandardTypedData * data) {
         cv::Mat whiteMask;
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(40.0, 255.0, 255.0), mask1);
-        cv::inRange(hcvImage, cv::Scalar(160.0, 0.0, 200.0), cv::Scalar(180.0, 255.0, 255.0), mask2);
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(180.0, 0.0, 255.0), whiteMask);
+        cv::inRange(hcvImage, cv::Scalar(0, 0, 200), cv::Scalar(40, 255, 255), mask1);
+        cv::inRange(hcvImage, cv::Scalar(160, 0, 200), cv::Scalar(180, 255, 255), mask2);
+        cv::inRange(hcvImage, cv::Scalar(0, 0, 200), cv::Scalar(180, 0, 255), whiteMask);
         
         cv::add(mask1, mask2, redMask);
         cv::add(redMask, whiteMask, dst);
