@@ -22,7 +22,6 @@
         case 4:
             result(greenThresholdB(data));
             break;
-        
         default:
             break;
     }
@@ -35,7 +34,7 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
     const char * command;
     std::vector<uint8_t> fileData;
     bool puedePasar = false;
-
+    
     FlutterStandardTypedData* resultado;
     
     command = [pathString cStringUsingEncoding:NSUTF8StringEncoding];
@@ -51,7 +50,7 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
     fileData = file_data;
     
     NSData *imgOriginal = [NSData dataWithBytes: file_data.data()
-                                   length: bytesInFile];
+                                         length: bytesInFile];
     
     
     suffix = strrchr(command, '.');
@@ -62,7 +61,7 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
     if (strcasecmp(suffix, ".png") == 0 || strcasecmp(suffix, ".jpg") == 0 || strcasecmp(suffix, ".jpeg") == 0) {
         puedePasar = true;
     }
-
+    
     
     if (puedePasar) {
         CFDataRef file_data_ref = CFDataCreateWithBytesNoCopy(NULL, fileData.data(),
@@ -88,13 +87,14 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
         cv::Mat src(rows, cols, CV_8UC4); // 8 bits per component, 4 channels (color channels + alpha)
         
         CGContextRef contextRef = CGBitmapContextCreate(src.data,                 // Pointer to  data
-                                                         cols,                       // Width of bitmap
-                                                         rows,                       // Height of bitmap
-                                                         8,                          // Bits per component
-                                                         src.step[0],              // Bytes per row
-                                                         colorSpace,                 // Colorspace
-                                                         kCGImageAlphaNoneSkipLast |
-                                                         kCGBitmapByteOrderDefault); // Bitmap info flags
+                                                        cols,                       // Width of bitmap
+                                                        rows,                       // Height of bitmap
+                                                        8,                          // Bits per component
+                                                        src.step[0],              // Bytes per row
+                                                        colorSpace,                 // Colorspace
+                                                        kCGImageAlphaNoneSkipLast |
+                                                        kCGBitmapByteOrderDefault); // Bitmap info flags
+        
         CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image);
         CGContextRelease(contextRef);
         CFRelease(image);
@@ -104,42 +104,44 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
         cv::Mat hcvImage;
         
         cv::cvtColor(src, hcvImage, cv::COLOR_BGR2HSV);
-
+        
         cv::Mat greenMask;
         cv::Mat whiteMask;
         cv::Mat dst;
-
-        cv::inRange(hcvImage, cv::Scalar(40.0, 0.0, 200.0), cv::Scalar(90.0, 255.0, 255.0), greenMask);
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(180.0, 0.0, 255.0), whiteMask);
-
+        
+        cv::inRange(hcvImage, cv::Scalar(40.0, 0.0, 200.0, 0.0), cv::Scalar(90.0, 255.0, 255.0, 255.0), greenMask);
+        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0, 0.0), cv::Scalar(180.0, 0.0, 255.0, 255.0), whiteMask);
+        
         cv::add(greenMask, whiteMask, dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         
         if (dst.elemSize() == 1) {
-              colorSpace = CGColorSpaceCreateDeviceGray();
-          } else {
-              colorSpace = CGColorSpaceCreateDeviceRGB();
-          }
-          CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
-          // Creating CGImage from cv::Mat
-          CGImageRef imageRef = CGImageCreate(dst.cols,                                 //width
-                                             dst.rows,                                 //height
-                                             8,                                          //bits per component
-                                             8 * dst.elemSize(),                       //bits per pixel
-                                             dst.step[0],                            //bytesPerRow
-                                             colorSpace,                                 //colorspace
-                                             kCGImageAlphaNone|kCGBitmapByteOrderDefault,// bitmap info
-                                             provider,                                   //CGDataProviderRef
-                                             NULL,                                       //decode
-                                             false,                                      //should interpolate
-                                             kCGRenderingIntentDefault                   //intent
-                                             );
-          // Getting UIImage from CGImage
-          UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
-          CGImageRelease(imageRef);
-          CGDataProviderRelease(provider);
-          CGColorSpaceRelease(colorSpace);
+            colorSpace = CGColorSpaceCreateDeviceGray();
+        } else {
+            colorSpace = CGColorSpaceCreateDeviceRGB();
+        }
+        
+        CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
+        // Creating CGImage from cv::Mat
+        CGImageRef imageRef = CGImageCreate(dst.cols,                                 //width
+                                            dst.rows,                                 //height
+                                            8,                                          //bits per component
+                                            8 * dst.elemSize(),                       //bits per pixel
+                                            dst.step[0],                            //bytesPerRow
+                                            colorSpace,                                 //colorspace
+                                            kCGImageAlphaNone|kCGBitmapByteOrderDefault,// bitmap info
+                                            provider,                                   //CGDataProviderRef
+                                            NULL,                                       //decode
+                                            false,                                      //should interpolate
+                                            kCGRenderingIntentDefault                   //intent
+                                            );
+        
+        // Getting UIImage from CGImage
+        UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
+        CGImageRelease(imageRef);
+        CGDataProviderRelease(provider);
+        CGColorSpaceRelease(colorSpace);
         
         NSData* imgConvert;
         
@@ -149,7 +151,7 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
                    (strcasecmp(suffix, ".jpeg") == 0)) {
             imgConvert = UIImageJPEGRepresentation(finalImage, 1);
         }
-
+        
         resultado = [FlutterStandardTypedData typedDataWithBytes: imgConvert];
     } else {
         resultado = [FlutterStandardTypedData typedDataWithBytes: imgOriginal];
@@ -159,8 +161,6 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
 }
 
 FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
-    
-
     CGColorSpaceRef colorSpace;
     const char * suffix;
     std::vector<uint8_t> fileData;
@@ -174,7 +174,7 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
     
     int size = data.elementCount;
     
-
+    
     CFDataRef file_data_ref = CFDataCreateWithBytesNoCopy(NULL, valor1,
                                                           size,
                                                           kCFAllocatorNull);
@@ -184,7 +184,7 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
     CGImageRef image = nullptr;
     
     image = CGImageCreateWithPNGDataProvider(image_provider, NULL, true,
-                                                 kCGRenderingIntentDefault);
+                                             kCGRenderingIntentDefault);
     suffix = (char*)".png";
     if (image == nil) {
         image = CGImageCreateWithJPEGDataProvider(image_provider, NULL, true,
@@ -203,13 +203,14 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
         
         src = cv::Mat(rows, cols, CV_8UC4); // 8 bits per component, 4 channels (color channels + alpha)
         CGContextRef contextRef = CGBitmapContextCreate(src.data,                 // Pointer to  data
-                                                         cols,                       // Width of bitmap
-                                                         rows,                       // Height of bitmap
-                                                         8,                          // Bits per component
-                                                         src.step[0],              // Bytes per row
-                                                         colorSpace,                 // Colorspace
-                                                         kCGImageAlphaNoneSkipLast |
-                                                         kCGBitmapByteOrderDefault); // Bitmap info flags
+                                                        cols,                       // Width of bitmap
+                                                        rows,                       // Height of bitmap
+                                                        8,                          // Bits per component
+                                                        src.step[0],              // Bytes per row
+                                                        colorSpace,                 // Colorspace
+                                                        kCGImageAlphaNoneSkipLast |
+                                                        kCGBitmapByteOrderDefault); // Bitmap info flags
+        
         CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image);
         CGContextRelease(contextRef);
         CFRelease(image);
@@ -224,44 +225,45 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
         resultado = [FlutterStandardTypedData typedDataWithBytes: data.data];
     } else {
         cv::Mat hcvImage;
-
+        
         cv::cvtColor(src, hcvImage, cv::COLOR_BGR2HSV);
-
+        
         cv::Mat greenMask;
         cv::Mat whiteMask;
         cv::Mat dst;
-
-        cv::inRange(hcvImage, cv::Scalar(40.0, 0.0, 200.0), cv::Scalar(90.0, 255.0, 255.0), greenMask);
-        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0), cv::Scalar(180.0, 0.0, 255.0), whiteMask);
-
+        
+        cv::inRange(hcvImage, cv::Scalar(40.0, 0.0, 200.0, 0.0), cv::Scalar(90.0, 255.0, 255.0, 255.0), greenMask);
+        cv::inRange(hcvImage, cv::Scalar(0.0, 0.0, 200.0, 0.0), cv::Scalar(180.0, 0.0, 255.0, 255.0), whiteMask);
+        
         cv::add(greenMask, whiteMask, dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         
         if (dst.elemSize() == 1) {
-              colorSpace = CGColorSpaceCreateDeviceGray();
-          } else {
-              colorSpace = CGColorSpaceCreateDeviceRGB();
-          }
-          CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
-          // Creating CGImage from cv::Mat
-          CGImageRef imageRef = CGImageCreate(dst.cols,                                 //width
-                                             dst.rows,                                 //height
-                                             8,                                          //bits per component
-                                             8 * dst.elemSize(),                       //bits per pixel
-                                             dst.step[0],                            //bytesPerRow
-                                             colorSpace,                                 //colorspace
-                                             kCGImageAlphaNone|kCGBitmapByteOrderDefault,// bitmap info
-                                             provider,                                   //CGDataProviderRef
-                                             NULL,                                       //decode
-                                             false,                                      //should interpolate
-                                             kCGRenderingIntentDefault                   //intent
-                                             );
-          // Getting UIImage from CGImage
-          UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
-          CGImageRelease(imageRef);
-          CGDataProviderRelease(provider);
-          CGColorSpaceRelease(colorSpace);
+            colorSpace = CGColorSpaceCreateDeviceGray();
+        } else {
+            colorSpace = CGColorSpaceCreateDeviceRGB();
+        }
+        CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
+        // Creating CGImage from cv::Mat
+        CGImageRef imageRef = CGImageCreate(dst.cols,                                 //width
+                                            dst.rows,                                 //height
+                                            8,                                          //bits per component
+                                            8 * dst.elemSize(),                       //bits per pixel
+                                            dst.step[0],                            //bytesPerRow
+                                            colorSpace,                                 //colorspace
+                                            kCGImageAlphaNone|kCGBitmapByteOrderDefault,// bitmap info
+                                            provider,                                   //CGDataProviderRef
+                                            NULL,                                       //decode
+                                            false,                                      //should interpolate
+                                            kCGRenderingIntentDefault                   //intent
+                                            );
+        
+        // Getting UIImage from CGImage
+        UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
+        CGImageRelease(imageRef);
+        CGDataProviderRelease(provider);
+        CGColorSpaceRelease(colorSpace);
         
         NSData* imgConvert;
         
