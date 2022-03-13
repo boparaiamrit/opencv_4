@@ -111,8 +111,8 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
         cv::Mat whiteMask;
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(40, 0, 200), cv::Scalar(90, 255, 255), greenMask);
-        cv::inRange(hcvImage, cv::Scalar(0, 0, 200), cv::Scalar(180, 0, 255), whiteMask);
+        cv::inRange(hcvImage, cv::Scalar(40, 0, 125), cv::Scalar(90, 255, 255), greenMask);
+        cv::inRange(hcvImage, cv::Scalar(0, 0, 125), cv::Scalar(180, 0, 255), whiteMask);
         
         cv::add(greenMask, whiteMask, dst);
         
@@ -236,8 +236,8 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
         cv::Mat whiteMask;
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(40, 0, 200), cv::Scalar(90, 255, 255), greenMask);
-        cv::inRange(hcvImage, cv::Scalar(0, 0, 200), cv::Scalar(180, 0, 255), whiteMask);
+        cv::inRange(hcvImage, cv::Scalar(40, 0, 125), cv::Scalar(90, 255, 255), greenMask);
+        cv::inRange(hcvImage, cv::Scalar(0, 0, 125), cv::Scalar(180, 0, 255), whiteMask);
         
         cv::add(greenMask, whiteMask, dst);
         

@@ -47,16 +47,16 @@ class RedThresholdFactory {
                 val whiteMask = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hcvImage, Scalar(0.0, 0.0, 200.0), Scalar(40.0, 255.0, 255.0), mask1)
+                Core.inRange(hcvImage, Scalar(0.0, 0.0, 125.0), Scalar(40.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hcvImage,
-                    Scalar(160.0, 0.0, 200.0),
+                    Scalar(160.0, 0.0, 125.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
                 Core.inRange(
                     hcvImage,
-                    Scalar(0.0, 0.0, 200.0),
+                    Scalar(0.0, 0.0, 125.0),
                     Scalar(180.0, 0.0, 255.0),
                     whiteMask
                 )
@@ -92,16 +92,16 @@ class RedThresholdFactory {
                 val whiteMask = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hcvImage, Scalar(0.0, 0.0, 200.0), Scalar(40.0, 255.0, 255.0), mask1)
+                Core.inRange(hcvImage, Scalar(0.0, 0.0, 125.0), Scalar(40.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hcvImage,
-                    Scalar(160.0, 0.0, 200.0),
+                    Scalar(160.0, 0.0, 125.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
                 Core.inRange(
                     hcvImage,
-                    Scalar(0.0, 0.0, 200.0),
+                    Scalar(0.0, 0.0, 125.0),
                     Scalar(180.0, 0.0, 255.0),
                     whiteMask
                 )

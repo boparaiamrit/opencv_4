@@ -47,14 +47,14 @@ class GreenThresholdFactory {
 
                 Core.inRange(
                     hcvImage,
-                    Scalar(40.0, 0.0, 200.0),
+                    Scalar(40.0, 0.0, 125.0),
                     Scalar(90.0, 255.0, 255.0),
                     greenMask
                 )
 
                 Core.inRange(
                     hcvImage,
-                    Scalar(0.0, 0.0, 200.0),
+                    Scalar(0.0, 0.0, 125.0),
                     Scalar(180.0, 0.0, 255.0),
                     whiteMask
                 )
@@ -89,14 +89,14 @@ class GreenThresholdFactory {
 
                 Core.inRange(
                     hcvImage,
-                    Scalar(40.0, 0.0, 200.0),
+                    Scalar(40.0, 0.0, 125.0),
                     Scalar(90.0, 255.0, 255.0),
                     greenMask
                 )
 
                 Core.inRange(
                     hcvImage,
-                    Scalar(0.0, 0.0, 200.0),
+                    Scalar(0.0, 0.0, 125.0),
                     Scalar(180.0, 0.0, 255.0),
                     whiteMask
                 )
