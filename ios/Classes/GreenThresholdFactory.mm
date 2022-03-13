@@ -106,15 +106,10 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
         
         cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
         cv::cvtColor(bgrImage, hcvImage, cv::COLOR_BGR2HSV);
-        
-        cv::Mat greenMask;
-        cv::Mat whiteMask;
+
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(40, 0, 125), cv::Scalar(90, 255, 255), greenMask);
-        cv::inRange(hcvImage, cv::Scalar(0, 0, 125), cv::Scalar(180, 0, 255), whiteMask);
-        
-        cv::add(greenMask, whiteMask, dst);
+        cv::inRange(hcvImage, cv::Scalar(40, 40, 150), cv::Scalar(90, 255, 255), dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         
@@ -231,15 +226,10 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
         
         cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
         cv::cvtColor(bgrImage, hcvImage, cv::COLOR_BGR2HSV);
-        
-        cv::Mat greenMask;
-        cv::Mat whiteMask;
+
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(40, 0, 125), cv::Scalar(90, 255, 255), greenMask);
-        cv::inRange(hcvImage, cv::Scalar(0, 0, 125), cv::Scalar(180, 0, 255), whiteMask);
-        
-        cv::add(greenMask, whiteMask, dst);
+        cv::inRange(hcvImage, cv::Scalar(40, 40, 150), cv::Scalar(90, 255, 255), dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         

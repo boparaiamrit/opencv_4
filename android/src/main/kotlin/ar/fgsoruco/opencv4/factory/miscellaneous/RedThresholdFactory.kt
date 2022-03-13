@@ -43,26 +43,17 @@ class RedThresholdFactory {
 
                 val mask1 = Mat()
                 val mask2 = Mat()
-                val redMask = Mat()
-                val whiteMask = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hcvImage, Scalar(0.0, 0.0, 125.0), Scalar(40.0, 255.0, 255.0), mask1)
+                Core.inRange(hcvImage, Scalar(0.0, 40.0, 150.0), Scalar(40.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hcvImage,
-                    Scalar(160.0, 0.0, 125.0),
+                    Scalar(160.0, 40.0, 150.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
-                Core.inRange(
-                    hcvImage,
-                    Scalar(0.0, 0.0, 125.0),
-                    Scalar(180.0, 0.0, 255.0),
-                    whiteMask
-                )
 
-                Core.add(mask1, mask2, redMask)
-                Core.add(redMask, whiteMask, finalMask)
+                Core.add(mask1, mask2, finalMask)
 
                 val matOfByte = MatOfByte()
                 Imgcodecs.imencode(".jpg", finalMask, matOfByte)
@@ -88,26 +79,17 @@ class RedThresholdFactory {
 
                 val mask1 = Mat()
                 val mask2 = Mat()
-                val redMask = Mat()
-                val whiteMask = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hcvImage, Scalar(0.0, 0.0, 125.0), Scalar(40.0, 255.0, 255.0), mask1)
+                Core.inRange(hcvImage, Scalar(0.0, 40.0, 150.0), Scalar(40.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hcvImage,
-                    Scalar(160.0, 0.0, 125.0),
+                    Scalar(160.0, 40.0, 150.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
-                Core.inRange(
-                    hcvImage,
-                    Scalar(0.0, 0.0, 125.0),
-                    Scalar(180.0, 0.0, 255.0),
-                    whiteMask
-                )
 
-                Core.add(mask1, mask2, redMask)
-                Core.add(redMask, whiteMask, finalMask)
+                Core.add(mask1, mask2, finalMask)
 
                 val matOfByte = MatOfByte()
                 Imgcodecs.imencode(".jpg", finalMask, matOfByte)
