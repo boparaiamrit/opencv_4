@@ -105,11 +105,11 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
         cv::Mat hcvImage;
         
         cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
-        cv::cvtColor(bgrImage, hcvImage, cv::COLOR_BGR2HSV);
+        cv::cvtColor(bgrImage, hcvImage, cv::COLOR_BGR2HLS);
 
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(40, 40, 150), cv::Scalar(90, 255, 255), dst);
+        cv::inRange(hcvImage, cv::Scalar(40, 70, 100), cv::Scalar(90, 255, 255), dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         
@@ -225,11 +225,11 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
         cv::Mat hcvImage;
         
         cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
-        cv::cvtColor(bgrImage, hcvImage, cv::COLOR_BGR2HSV);
+        cv::cvtColor(bgrImage, hcvImage, cv::COLOR_BGR2HLS);
 
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(40, 40, 150), cv::Scalar(90, 255, 255), dst);
+        cv::inRange(hcvImage, cv::Scalar(40, 70, 100), cv::Scalar(90, 255, 255), dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         

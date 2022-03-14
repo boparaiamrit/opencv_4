@@ -39,13 +39,13 @@ class GreenThresholdFactory {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
                 val hcvImage = Mat()
-                Imgproc.cvtColor(srcImage, hcvImage, Imgproc.COLOR_BGR2HSV)
+                Imgproc.cvtColor(srcImage, hcvImage, Imgproc.COLOR_BGR2HLS)
 
                 val finalMask = Mat()
 
                 Core.inRange(
                     hcvImage,
-                    Scalar(40.0, 40.0, 150.0),
+                    Scalar(40.0, 70.0, 100.0),
                     Scalar(90.0, 255.0, 255.0),
                     finalMask
                 )
@@ -72,11 +72,14 @@ class GreenThresholdFactory {
                 val hcvImage = Mat()
                 Imgproc.cvtColor(srcImage, hcvImage, Imgproc.COLOR_BGR2HSV)
 
+                val hcvImage = Mat()
+                Imgproc.cvtColor(srcImage, hcvImage, Imgproc.COLOR_BGR2HLS)
+
                 val finalMask = Mat()
 
                 Core.inRange(
                     hcvImage,
-                    Scalar(40.0, 40.0, 150.0),
+                    Scalar(40.0, 70.0, 100.0),
                     Scalar(90.0, 255.0, 255.0),
                     finalMask
                 )
