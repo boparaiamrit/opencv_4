@@ -38,16 +38,16 @@ class RedThresholdFactory {
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-                val hcvImage = Mat()
-                Imgproc.cvtColor(srcImage, hcvImage, Imgproc.COLOR_BGR2HLS)
+                val hlsImage = Mat()
+                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HLS)
 
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hcvImage, Scalar(0.0, 70.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
+                Core.inRange(hlsImage, Scalar(0.0, 70.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
                 Core.inRange(
-                    hcvImage,
+                    hlsImage,
                     Scalar(160.0, 70.0, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
@@ -74,16 +74,16 @@ class RedThresholdFactory {
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-                val hcvImage = Mat()
-                Imgproc.cvtColor(srcImage, hcvImage, Imgproc.COLOR_BGR2HLS)
+                val hlsImage = Mat()
+                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HLS)
 
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hcvImage, Scalar(0.0, 70.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
+                Core.inRange(hlsImage, Scalar(0.0, 70.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
                 Core.inRange(
-                    hcvImage,
+                    hlsImage,
                     Scalar(160.0, 70.0, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
