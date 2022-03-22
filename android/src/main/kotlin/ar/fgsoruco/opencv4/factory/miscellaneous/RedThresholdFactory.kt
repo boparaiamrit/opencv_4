@@ -45,10 +45,10 @@ class RedThresholdFactory {
                 val mask2 = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hlsImage, Scalar(0.0, 70.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
+                Core.inRange(hlsImage, Scalar(0.0, 50.0, 70.0), Scalar(20.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hlsImage,
-                    Scalar(160.0, 70.0, 100.0),
+                    Scalar(160.0, 50.0, 70.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
@@ -81,10 +81,10 @@ class RedThresholdFactory {
                 val mask2 = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hlsImage, Scalar(0.0, 70.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
+                Core.inRange(hlsImage, Scalar(0.0, 50.0, 70.0), Scalar(20.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hlsImage,
-                    Scalar(160.0, 70.0, 100.0),
+                    Scalar(160.0, 50.0, 70.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
