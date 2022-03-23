@@ -109,7 +109,7 @@ FlutterStandardTypedData * greenThresholdS(NSString * pathString) {
 
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(40, 70, 100), cv::Scalar(90, 255, 255), dst);
+        cv::inRange(hcvImage, cv::Scalar(40, 50, 70), cv::Scalar(90, 255, 255), dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         
@@ -229,7 +229,7 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data) {
 
         cv::Mat dst;
         
-        cv::inRange(hcvImage, cv::Scalar(40, 70, 100), cv::Scalar(90, 255, 255), dst);
+        cv::inRange(hcvImage, cv::Scalar(40, 50, 70), cv::Scalar(90, 255, 255), dst);
         
         NSData *data = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
         
