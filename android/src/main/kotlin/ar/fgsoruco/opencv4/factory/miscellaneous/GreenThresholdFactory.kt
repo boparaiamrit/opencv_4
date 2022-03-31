@@ -54,7 +54,7 @@ class GreenThresholdFactory {
                 )
 
                 val matOfByte = MatOfByte()
-                Imgcodecs.imencode(".jpg", finalMask, matOfByte)
+                Imgcodecs.imencode(".png", finalMask, matOfByte)
                 byteArray = matOfByte.toArray()
             } catch (e: java.lang.Exception) {
                 println("OpenCV Error: $e")
@@ -88,7 +88,7 @@ class GreenThresholdFactory {
                 )
 
                 val matOfByte = MatOfByte()
-                Imgcodecs.imencode(".jpg", finalMask, matOfByte)
+                Imgcodecs.imencode(".png", finalMask, matOfByte)
                 byteArray = matOfByte.toArray()
             } catch (e: java.lang.Exception) {
                 println("OpenCV Error: $e")
