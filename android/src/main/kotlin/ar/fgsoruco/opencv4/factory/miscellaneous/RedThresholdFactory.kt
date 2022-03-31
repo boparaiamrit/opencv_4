@@ -38,17 +38,20 @@ class RedThresholdFactory {
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
+                val bgrImage = Mat()
+                Imgproc.cvtColor(srcImage, bgrImage, Imgproc.COLOR_YUV2BGR_I420)
+
                 val hlsImage = Mat()
-                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HLS)
+                Imgproc.cvtColor(bgrImage, hlsImage, Imgproc.COLOR_BGR2HLS)
 
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hlsImage, Scalar(0.0, 50.0, 70.0), Scalar(20.0, 255.0, 255.0), mask1)
+                Core.inRange(hlsImage, Scalar(0.0, 100.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hlsImage,
-                    Scalar(160.0, 50.0, 70.0),
+                    Scalar(160.0, 100.0, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
@@ -74,17 +77,20 @@ class RedThresholdFactory {
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
+                val bgrImage = Mat()
+                Imgproc.cvtColor(srcImage, bgrImage, Imgproc.COLOR_YUV2BGR_I420)
+
                 val hlsImage = Mat()
-                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HLS)
+                Imgproc.cvtColor(bgrImage, hlsImage, Imgproc.COLOR_BGR2HLS)
 
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hlsImage, Scalar(0.0, 50.0, 70.0), Scalar(20.0, 255.0, 255.0), mask1)
+                Core.inRange(hlsImage, Scalar(0.0, 100.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hlsImage,
-                    Scalar(160.0, 50.0, 70.0),
+                    Scalar(160.0, 100.0, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
@@ -98,7 +104,7 @@ class RedThresholdFactory {
                 println("OpenCV Error: $e")
             }
 
-            return byteArray;
+            return byteArray
         }
     }
 }
