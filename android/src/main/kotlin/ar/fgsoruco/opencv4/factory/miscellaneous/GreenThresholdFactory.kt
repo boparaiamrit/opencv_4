@@ -16,19 +16,21 @@ class GreenThresholdFactory {
             pathType: Int,
             pathData: String,
             data: ByteArray,
+            minThresholdValue: Double,
             result: MethodChannel.Result
         ) {
             when (pathType) {
-                1 -> result.success(greenThresholdS(pathData))
-                2 -> result.success(greenThresholdB(data))
-                3 -> result.success(greenThresholdB(data))
-                4 -> result.success(greenThresholdB(data))
+                1 -> result.success(greenThresholdS(pathData, minThresholdValue))
+                2 -> result.success(greenThresholdB(data, minThresholdValue))
+                3 -> result.success(greenThresholdB(data, minThresholdValue))
+                4 -> result.success(greenThresholdB(data, minThresholdValue))
             }
         }
 
         //Module: Miscellaneous Image Transformations
         private fun greenThresholdS(
-            pathData: String
+            pathData: String,
+            minThresholdValue: Double
         ): ByteArray {
             var byteArray = ByteArray(0)
 
@@ -45,7 +47,7 @@ class GreenThresholdFactory {
 
                 Core.inRange(
                     hlsImage,
-                    Scalar(40.0, 100.0, 100.0),
+                    Scalar(40.0, minThresholdValue, 100.0),
                     Scalar(90.0, 255.0, 255.0),
                     finalMask
                 )
@@ -62,7 +64,8 @@ class GreenThresholdFactory {
 
         //Module: Miscellaneous Image Transformations
         private fun greenThresholdB(
-            data: ByteArray
+            data: ByteArray,
+            minThresholdValue: Double
         ): ByteArray {
             var byteArray = ByteArray(0)
 
@@ -76,7 +79,7 @@ class GreenThresholdFactory {
 
                 Core.inRange(
                     hlsImage,
-                    Scalar(40.0, 100.0, 100.0),
+                    Scalar(40.0, minThresholdValue, 100.0),
                     Scalar(90.0, 255.0, 255.0),
                     finalMask
                 )

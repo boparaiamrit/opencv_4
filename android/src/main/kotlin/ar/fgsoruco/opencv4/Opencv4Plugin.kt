@@ -330,6 +330,7 @@ class Opencv4Plugin : FlutterPlugin, MethodCallHandler {
                         call.argument<Int>("pathType") as Int,
                         call.argument<String>("pathString") as String,
                         call.argument<ByteArray>("data") as ByteArray,
+                        call.argument<Double>("minThresholdValue") as Double,
                         result
                     )
                 } catch (e: Exception) {
@@ -342,6 +343,7 @@ class Opencv4Plugin : FlutterPlugin, MethodCallHandler {
                         call.argument<Int>("pathType") as Int,
                         call.argument<String>("pathString") as String,
                         call.argument<ByteArray>("data") as ByteArray,
+                        call.argument<Double>("minThresholdValue") as Double,
                         result
                     )
                 } catch (e: Exception) {

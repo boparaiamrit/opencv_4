@@ -16,19 +16,21 @@ class RedThresholdFactory {
             pathType: Int,
             pathData: String,
             data: ByteArray,
+            minThresholdValue: Double,
             result: MethodChannel.Result
         ) {
             when (pathType) {
-                1 -> result.success(redThresholdS(pathData))
-                2 -> result.success(redThresholdB(data))
-                3 -> result.success(redThresholdB(data))
-                4 -> result.success(redThresholdB(data))
+                1 -> result.success(redThresholdS(pathData, minThresholdValue))
+                2 -> result.success(redThresholdB(data, minThresholdValue))
+                3 -> result.success(redThresholdB(data, minThresholdValue))
+                4 -> result.success(redThresholdB(data, minThresholdValue))
             }
         }
 
         //Module: Miscellaneous Image Transformations
         private fun redThresholdS(
-            pathData: String
+            pathData: String,
+            minThresholdValue: Double
         ): ByteArray {
             var byteArray = ByteArray(0)
 
@@ -45,10 +47,15 @@ class RedThresholdFactory {
                 val mask2 = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hlsImage, Scalar(0.0, 100.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hlsImage,
-                    Scalar(160.0, 100.0, 100.0),
+                    Scalar(0.0, minThresholdValue, 100.0),
+                    Scalar(20.0, 255.0, 255.0),
+                    mask1
+                )
+                Core.inRange(
+                    hlsImage,
+                    Scalar(160.0, minThresholdValue, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
@@ -67,7 +74,8 @@ class RedThresholdFactory {
 
         //Module: Miscellaneous Image Transformations
         private fun redThresholdB(
-            data: ByteArray
+            data: ByteArray,
+            minThresholdValue: Double
         ): ByteArray {
             var byteArray = ByteArray(0)
 
@@ -81,10 +89,15 @@ class RedThresholdFactory {
                 val mask2 = Mat()
                 val finalMask = Mat()
 
-                Core.inRange(hlsImage, Scalar(0.0, 100.0, 100.0), Scalar(20.0, 255.0, 255.0), mask1)
                 Core.inRange(
                     hlsImage,
-                    Scalar(160.0, 100.0, 100.0),
+                    Scalar(0.0, minThresholdValue, 100.0),
+                    Scalar(30.0, 255.0, 255.0),
+                    mask1
+                )
+                Core.inRange(
+                    hlsImage,
+                    Scalar(150.0, minThresholdValue, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
