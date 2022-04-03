@@ -635,24 +635,11 @@ class Cv2 {
   }) async {
     /// Variable to store operation result
     final dynamic result = await ThresholdFactory.threshold(
-        pathFrom: pathFrom,
-        pathString: pathString,
-        thresholdValue: thresholdValue,
-        maxThresholdValue: maxThresholdValue,
-        thresholdType: thresholdType,
-        imageData: imageData);
-
-    /// Function returns the response from method channel
-    return result;
-  }
-
-  /// [redThreshold] function of Module: Miscellaneous Image Transformations
-  static Future<dynamic> redThreshold(
-      {CVPathFrom pathFrom = CVPathFrom.ASSETS, required String pathString, required Uint8List imageData}) async {
-    /// Variable to store operation result
-    final dynamic result = await RedThresholdFactory.redThreshold(
       pathFrom: pathFrom,
       pathString: pathString,
+      thresholdValue: thresholdValue,
+      maxThresholdValue: maxThresholdValue,
+      thresholdType: thresholdType,
       imageData: imageData,
     );
 
@@ -660,14 +647,38 @@ class Cv2 {
     return result;
   }
 
+  /// [redThreshold] function of Module: Miscellaneous Image Transformations
+  static Future<dynamic> redThreshold({
+    CVPathFrom pathFrom = CVPathFrom.ASSETS,
+    required String pathString,
+    required Uint8List imageData,
+    required double minThresholdValue,
+  }) async {
+    /// Variable to store operation result
+    final dynamic result = await RedThresholdFactory.redThreshold(
+      pathFrom: pathFrom,
+      pathString: pathString,
+      imageData: imageData,
+      minThresholdValue: minThresholdValue,
+    );
+
+    /// Function returns the response from method channel
+    return result;
+  }
+
   /// [greenThreshold] function of Module: Miscellaneous Image Transformations
-  static Future<dynamic> greenThreshold(
-      {CVPathFrom pathFrom = CVPathFrom.ASSETS, required String pathString, required Uint8List imageData}) async {
+  static Future<dynamic> greenThreshold({
+    CVPathFrom pathFrom = CVPathFrom.ASSETS,
+    required String pathString,
+    required Uint8List imageData,
+    required double minThresholdValue,
+  }) async {
     /// Variable to store operation result
     final dynamic result = await GreenThresholdFactory.greenThreshold(
       pathFrom: pathFrom,
       pathString: pathString,
       imageData: imageData,
+      minThresholdValue: minThresholdValue,
     );
 
     /// Function returns the response from method channel

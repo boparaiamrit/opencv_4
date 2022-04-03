@@ -255,15 +255,17 @@
         int pathType = [call.arguments[@"pathType"] intValue];
         NSString* pathString = call.arguments[@"pathString"];
         FlutterStandardTypedData* data = call.arguments[@"data"];
+        double minThresholdValue = [call.arguments[@"minThresholdValue"] doubleValue];
 
-        [RedThresholdFactory processWhitPathType:pathType pathString:pathString data:data result:result];
+        [RedThresholdFactory processWhitPathType:pathType pathString:pathString data:data minThresholdValue:minThresholdValue result:result];
     }else if ([@"greenThreshold" isEqualToString:call.method]) {
 
         int pathType = [call.arguments[@"pathType"] intValue];
         NSString* pathString = call.arguments[@"pathString"];
         FlutterStandardTypedData* data = call.arguments[@"data"];
+        double minThresholdValue = [call.arguments[@"minThresholdValue"] doubleValue];
 
-        [GreenThresholdFactory processWhitPathType:pathType pathString:pathString data:data result:result];
+        [GreenThresholdFactory processWhitPathType:pathType pathString:pathString data:data minThresholdValue:minThresholdValue result:result];
     }
     else if ([@"applyColorMap" isEqualToString:call.method]) {
 
