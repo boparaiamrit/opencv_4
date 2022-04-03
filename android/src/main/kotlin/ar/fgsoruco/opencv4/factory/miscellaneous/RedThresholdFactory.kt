@@ -56,7 +56,7 @@ class RedThresholdFactory {
                 Core.add(mask1, mask2, finalMask)
 
                 val matOfByte = MatOfByte()
-                Imgcodecs.imencode(".png", finalMask, matOfByte)
+                Imgcodecs.imencode(".jpg", finalMask, matOfByte)
                 byteArray = matOfByte.toArray()
             } catch (e: java.lang.Exception) {
                 println("OpenCV Error: $e")
@@ -92,7 +92,7 @@ class RedThresholdFactory {
                 Core.add(mask1, mask2, finalMask)
 
                 val matOfByte = MatOfByte()
-                Imgcodecs.imencode(".png", finalMask, matOfByte)
+                Imgcodecs.imencode(".jpg", finalMask, matOfByte)
                 byteArray = matOfByte.toArray()
             } catch (e: java.lang.Exception) {
                 println("OpenCV Error: $e")
