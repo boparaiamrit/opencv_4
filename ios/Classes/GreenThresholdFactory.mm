@@ -1,6 +1,6 @@
 #import "GreenThresholdFactory.h"
 
-FlutterStandardTypedData *redThresholdB(FlutterStandardTypedData *data, double minThresholdValue);
+FlutterStandardTypedData *greenThresholdB(FlutterStandardTypedData *data, double minThresholdValue);
 
 @implementation GreenThresholdFactory
 
@@ -10,13 +10,13 @@ FlutterStandardTypedData *redThresholdB(FlutterStandardTypedData *data, double m
         case 1:
             break;
         case 2:
-            result(redThresholdB(data, minThresholdValue));
+            result(greenThresholdB(data, minThresholdValue));
             break;
         case 3:
-            result(redThresholdB(data, minThresholdValue));
+            result(greenThresholdB(data, minThresholdValue));
             break;
         case 4:
-            result(redThresholdB(data, minThresholdValue));
+            result(greenThresholdB(data, minThresholdValue));
             break;
 
         default:
@@ -24,7 +24,7 @@ FlutterStandardTypedData *redThresholdB(FlutterStandardTypedData *data, double m
     }
 }
 
-FlutterStandardTypedData *redThresholdB(FlutterStandardTypedData *data, double minThresholdValue) {
+FlutterStandardTypedData *greenThresholdB(FlutterStandardTypedData *data, double minThresholdValue) {
     CGColorSpaceRef colorSpace;
     std::vector<uint8_t> fileData;
 
