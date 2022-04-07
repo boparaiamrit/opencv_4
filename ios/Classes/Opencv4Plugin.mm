@@ -57,10 +57,10 @@
         NSArray* kernelSize = call.arguments[@"kernelSize"];
         NSArray* anchorPoint = call.arguments[@"anchorPoint"];
         int borderType = [call.arguments[@"borderType"] intValue];
-        double p1 = [[anchorPoint objectAtIndex:0] doubleValue];
-        double p2 = [[anchorPoint objectAtIndex:1] doubleValue];
-        double x = [[kernelSize objectAtIndex:0] doubleValue];
-        double y = [[kernelSize objectAtIndex:1] doubleValue];
+        double p1 = [anchorPoint[0] doubleValue];
+        double p2 = [anchorPoint[1] doubleValue];
+        double x = [kernelSize[0] doubleValue];
+        double y = [kernelSize[1] doubleValue];
         double kernelSizeDouble[2] = {x,y};
         double anchorPointDouble[2] = {p1,p2};
 
@@ -76,10 +76,10 @@
         NSArray* anchorPoint = call.arguments[@"anchorPoint"];
         bool normalize = [call.arguments[@"normalize"] boolValue];
         int borderType = [call.arguments[@"borderType"] intValue];
-        double p1 = [[anchorPoint objectAtIndex:0] doubleValue];
-        double p2 = [[anchorPoint objectAtIndex:1] doubleValue];
-        double x = [[kernelSize objectAtIndex:0] doubleValue];
-        double y = [[kernelSize objectAtIndex:1] doubleValue];
+        double p1 = [anchorPoint[0] doubleValue];
+        double p2 = [anchorPoint[1] doubleValue];
+        double x = [kernelSize[0] doubleValue];
+        double y = [kernelSize[1] doubleValue];
         double kernelSizeDouble[2] = {x,y};
         double anchorPointDouble[2] = {p1,p2};
 
@@ -91,8 +91,8 @@
         NSString* pathString = call.arguments[@"pathString"];
         FlutterStandardTypedData* data = call.arguments[@"data"];
         NSArray* kernelSize = call.arguments[@"kernelSize"];
-        double x = [[kernelSize objectAtIndex:0] doubleValue];
-        double y = [[kernelSize objectAtIndex:1] doubleValue];
+        double x = [kernelSize[0] doubleValue];
+        double y = [kernelSize[1] doubleValue];
         double kernelSizeDouble[2] = {x,y};
 
 
@@ -104,8 +104,8 @@
         NSString* pathString = call.arguments[@"pathString"];
         FlutterStandardTypedData* data = call.arguments[@"data"];
         NSArray* kernelSize = call.arguments[@"kernelSize"];
-        double x = [[kernelSize objectAtIndex:0] doubleValue];
-        double y = [[kernelSize objectAtIndex:1] doubleValue];
+        double x = [kernelSize[0] doubleValue];
+        double y = [kernelSize[1] doubleValue];
         double kernelSizeDouble[2] = {x,y};
 
 
@@ -118,8 +118,8 @@
         FlutterStandardTypedData* data = call.arguments[@"data"];
         int outputDepth = [call.arguments[@"outputDepth"] intValue];
         NSArray* kernelSize = call.arguments[@"kernelSize"];
-        int x = [[kernelSize objectAtIndex:0] intValue];
-        int y = [[kernelSize objectAtIndex:1] intValue];
+        int x = [kernelSize[0] intValue];
+        int y = [kernelSize[1] intValue];
         int kernelSizeInt[2] = {x,y};
 
         [Filter2DFactory processWhitPathType:pathType pathString:pathString data:data outputDepth:outputDepth kernelSize:kernelSizeInt result:result];
@@ -131,8 +131,8 @@
         FlutterStandardTypedData* data = call.arguments[@"data"];
         NSArray* kernelSize = call.arguments[@"kernelSize"];
         double sigmaX = [call.arguments[@"sigmaX"] doubleValue];
-        double x = [[kernelSize objectAtIndex:0] doubleValue];
-        double y = [[kernelSize objectAtIndex:1] doubleValue];
+        double x = [kernelSize[0] doubleValue];
+        double y = [kernelSize[1] doubleValue];
         double kernelSizeDouble[2] = {x,y};
 
         [GaussianBlurFactory processWhitPathType:pathType pathString:pathString data:data kernelSize:kernelSizeDouble sigmaX:sigmaX result:result];
@@ -164,8 +164,8 @@
         FlutterStandardTypedData* data = call.arguments[@"data"];
         int operation = [call.arguments[@"operation"] intValue];
         NSArray* kernelSize = call.arguments[@"kernelSize"];
-        int x = [[kernelSize objectAtIndex:0] intValue];
-        int y = [[kernelSize objectAtIndex:1] intValue];
+        int x = [kernelSize[0] intValue];
+        int y = [kernelSize[1] intValue];
         int kernelSizeInt[2] = {x,y};
 
         [MorphologyExFactory processWhitPathType:pathType pathString:pathString data:data operation:operation kernelSize:kernelSizeInt result:result];
@@ -209,8 +209,8 @@
         FlutterStandardTypedData* data = call.arguments[@"data"];
         int outputDepth = [call.arguments[@"outputDepth"] intValue];
         NSArray* kernelSize = call.arguments[@"kernelSize"];
-        double x = [[kernelSize objectAtIndex:0] doubleValue];
-        double y = [[kernelSize objectAtIndex:1] doubleValue];
+        double x = [kernelSize[0] doubleValue];
+        double y = [kernelSize[1] doubleValue];
         double kernelSizeDouble[2] = {x,y};
 
         [SqrBoxFilterFactory processWhitPathType:pathType pathString:pathString data:data outputDepth:outputDepth kernelSize:kernelSizeDouble result:result];
@@ -227,7 +227,8 @@
         int blockSize = [call.arguments[@"blockSize"] intValue];
         double constantValue = [call.arguments[@"constantValue"] doubleValue];
 
-        [AdaptiveThresholdFactory processWhitPathType:pathType pathString:pathString data:data maxValue:maxValue adaptiveMethod:adaptiveMethod thresholdType:thresholdType blockSize:blockSize constantValue:constantValue result:result];
+        [AdaptiveThresholdFactory processWhitPathType:pathType pathString:pathString data:data maxValue:maxValue adaptiveMethod:adaptiveMethod thresholdType:thresholdType blockSize:blockSize constantValue:static_cast<int>(constantValue) result:result];
+
     }
     else if ([@"distanceTransform" isEqualToString:call.method]) {
 
