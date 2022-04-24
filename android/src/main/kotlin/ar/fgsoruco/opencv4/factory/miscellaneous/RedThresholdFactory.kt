@@ -40,21 +40,21 @@ class RedThresholdFactory {
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-                val hlsImage = Mat()
-                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HLS)
+                val hsvImage = Mat()
+                Imgproc.cvtColor(srcImage, hsvImage, Imgproc.COLOR_BGR2HSV)
 
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val finalMask = Mat()
 
                 Core.inRange(
-                    hlsImage,
+                    hsvImage,
                     Scalar(0.0, minThresholdValue, 100.0),
-                    Scalar(20.0, 255.0, 255.0),
+                    Scalar(10.0, 255.0, 255.0),
                     mask1
                 )
                 Core.inRange(
-                    hlsImage,
+                    hsvImage,
                     Scalar(160.0, minThresholdValue, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
@@ -82,22 +82,22 @@ class RedThresholdFactory {
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-                val hlsImage = Mat()
-                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HLS)
+                val hsvImage = Mat()
+                Imgproc.cvtColor(srcImage, hsvImage, Imgproc.COLOR_BGR2HSV)
 
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val finalMask = Mat()
 
                 Core.inRange(
-                    hlsImage,
+                    hsvImage,
                     Scalar(0.0, minThresholdValue, 100.0),
-                    Scalar(30.0, 255.0, 255.0),
+                    Scalar(10.0, 255.0, 255.0),
                     mask1
                 )
                 Core.inRange(
-                    hlsImage,
-                    Scalar(150.0, minThresholdValue, 100.0),
+                    hsvImage,
+                    Scalar(160.0, minThresholdValue, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
