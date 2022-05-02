@@ -110,17 +110,17 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString, double minThresh
 
 
         cv::Mat bgrImage;
-        cv::Mat hsvImage;
+        cv::Mat hlsImage;
 
         cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
-        cv::cvtColor(bgrImage, hsvImage, cv::COLOR_BGR2HSV);
+        cv::cvtColor(bgrImage, hlsImage, cv::COLOR_BGR2HLS);
 
         cv::Mat mask1;
         cv::Mat mask2;
         cv::Mat dst;
 
-        cv::inRange(hsvImage, cv::Scalar(0, minThresholdValue, 100), cv::Scalar(10, 255, 255), mask1);
-        cv::inRange(hsvImage, cv::Scalar(160, minThresholdValue, 100), cv::Scalar(180, 255, 255), mask2);
+        cv::inRange(hlsImage, cv::Scalar(0, minThresholdValue, 100), cv::Scalar(10, 255, 255), mask1);
+        cv::inRange(hlsImage, cv::Scalar(160, minThresholdValue, 100), cv::Scalar(180, 255, 255), mask2);
 
         cv::add(mask1, mask2, dst);
 
@@ -236,17 +236,17 @@ FlutterStandardTypedData * redThresholdB(FlutterStandardTypedData * data, double
         resultado = [FlutterStandardTypedData typedDataWithBytes: data.data];
     } else {
         cv::Mat bgrImage;
-        cv::Mat hsvImage;
+        cv::Mat hlsImage;
 
         cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
-        cv::cvtColor(bgrImage, hsvImage, cv::COLOR_BGR2HSV);
+        cv::cvtColor(bgrImage, hlsImage, cv::COLOR_BGR2HLS);
 
         cv::Mat mask1;
         cv::Mat mask2;
         cv::Mat dst;
 
-        cv::inRange(hsvImage, cv::Scalar(0, minThresholdValue, 100), cv::Scalar(10, 255, 255), mask1);
-        cv::inRange(hsvImage, cv::Scalar(160, minThresholdValue, 100), cv::Scalar(180, 255, 255), mask2);
+        cv::inRange(hlsImage, cv::Scalar(0, minThresholdValue, 100), cv::Scalar(10, 255, 255), mask1);
+        cv::inRange(hlsImage, cv::Scalar(160, minThresholdValue, 100), cv::Scalar(180, 255, 255), mask2);
 
         cv::add(mask1, mask2, dst);
 
