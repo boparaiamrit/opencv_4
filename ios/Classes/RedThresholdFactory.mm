@@ -113,7 +113,7 @@ FlutterStandardTypedData * redThresholdS(NSString * pathString, double minThresh
         cv::Mat hlsImage;
 
         cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
-        cv::cvtColor(bgrImage, hlsImage, cv::COLOR_BGR2HLS);
+        cv::cvtColor(bgrImage, hlsImage, cv::COLOR_BGR2HSV);
 
         cv::Mat mask1;
         cv::Mat mask2;
@@ -239,7 +239,7 @@ FlutterStandardTypedData * redThresholdB(FlutterStandardTypedData * data, double
         cv::Mat hlsImage;
 
         cv::cvtColor(src, bgrImage, cv::COLOR_BGRA2BGR);
-        cv::cvtColor(bgrImage, hlsImage, cv::COLOR_BGR2HLS);
+        cv::cvtColor(bgrImage, hlsImage, cv::COLOR_BGR2HSV);
 
         cv::Mat mask1;
         cv::Mat mask2;
