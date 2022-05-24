@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-+ (void)processWhitPathType:(int)pathType pathString:(NSString *)pathString data:(FlutterStandardTypedData *)data minThresholdValue:(double)minThresholdValue result: (FlutterResult) result;
++ (void)processWhitPathType:(int)pathType pathString:(NSString *)pathString data:(FlutterStandardTypedData *)data minThresholdValue:(double)minThresholdValue algorithm:(NSString *)algorithm result: (FlutterResult) result;
 
 
 @end
