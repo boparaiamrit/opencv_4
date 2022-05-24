@@ -17,20 +17,22 @@ class RedThresholdFactory {
             pathData: String,
             data: ByteArray,
             minThresholdValue: Double,
+            algorithm: String,
             result: MethodChannel.Result
         ) {
             when (pathType) {
-                1 -> result.success(redThresholdS(pathData, minThresholdValue))
-                2 -> result.success(redThresholdB(data, minThresholdValue))
-                3 -> result.success(redThresholdB(data, minThresholdValue))
-                4 -> result.success(redThresholdB(data, minThresholdValue))
+                1 -> result.success(redThresholdS(pathData, minThresholdValue, algorithm))
+                2 -> result.success(redThresholdB(data, minThresholdValue, algorithm))
+                3 -> result.success(redThresholdB(data, minThresholdValue, algorithm))
+                4 -> result.success(redThresholdB(data, minThresholdValue, algorithm))
             }
         }
 
         //Module: Miscellaneous Image Transformations
         private fun redThresholdS(
             pathData: String,
-            minThresholdValue: Double
+            minThresholdValue: Double,
+            algorithm: String
         ): ByteArray {
             var byteArray = ByteArray(0)
 
@@ -40,21 +42,25 @@ class RedThresholdFactory {
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-                val hlsImage = Mat()
-                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HSV)
+                val thresholdImage = Mat()
+                Imgproc.cvtColor(
+                    srcImage,
+                    thresholdImage,
+                    if (algorithm == "hsv") Imgproc.COLOR_BGR2HSV else Imgproc.COLOR_BGR2HLS
+                )
 
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val finalMask = Mat()
 
                 Core.inRange(
-                    hlsImage,
+                    thresholdImage,
                     Scalar(0.0, minThresholdValue, 100.0),
                     Scalar(10.0, 255.0, 255.0),
                     mask1
                 )
                 Core.inRange(
-                    hlsImage,
+                    thresholdImage,
                     Scalar(160.0, minThresholdValue, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
@@ -75,28 +81,33 @@ class RedThresholdFactory {
         //Module: Miscellaneous Image Transformations
         private fun redThresholdB(
             data: ByteArray,
-            minThresholdValue: Double
+            minThresholdValue: Double,
+            algorithm: String
         ): ByteArray {
             var byteArray = ByteArray(0)
 
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-                val hlsImage = Mat()
-                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HSV)
+                val thresholdImage = Mat()
+                Imgproc.cvtColor(
+                    srcImage,
+                    thresholdImage,
+                    if (algorithm == "hsv") Imgproc.COLOR_BGR2HSV else Imgproc.COLOR_BGR2HLS
+                )
 
                 val mask1 = Mat()
                 val mask2 = Mat()
                 val finalMask = Mat()
 
                 Core.inRange(
-                    hlsImage,
+                    thresholdImage,
                     Scalar(0.0, minThresholdValue, 100.0),
                     Scalar(10.0, 255.0, 255.0),
                     mask1
                 )
                 Core.inRange(
-                    hlsImage,
+                    thresholdImage,
                     Scalar(160.0, minThresholdValue, 100.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2

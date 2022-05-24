@@ -653,6 +653,7 @@ class Cv2 {
     required String pathString,
     required Uint8List imageData,
     required double minThresholdValue,
+    required String algorithm,
   }) async {
     /// Variable to store operation result
     final dynamic result = await RedThresholdFactory.redThreshold(
@@ -660,6 +661,7 @@ class Cv2 {
       pathString: pathString,
       imageData: imageData,
       minThresholdValue: minThresholdValue,
+      algorithm: algorithm,
     );
 
     /// Function returns the response from method channel
@@ -672,6 +674,7 @@ class Cv2 {
     required String pathString,
     required Uint8List imageData,
     required double minThresholdValue,
+    required String algorithm,
   }) async {
     /// Variable to store operation result
     final dynamic result = await GreenThresholdFactory.greenThreshold(
@@ -679,6 +682,7 @@ class Cv2 {
       pathString: pathString,
       imageData: imageData,
       minThresholdValue: minThresholdValue,
+      algorithm: algorithm,
     );
 
     /// Function returns the response from method channel

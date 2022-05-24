@@ -17,20 +17,22 @@ class GreenThresholdFactory {
             pathData: String,
             data: ByteArray,
             minThresholdValue: Double,
+            algorithm: String,
             result: MethodChannel.Result
         ) {
             when (pathType) {
-                1 -> result.success(greenThresholdS(pathData, minThresholdValue))
-                2 -> result.success(greenThresholdB(data, minThresholdValue))
-                3 -> result.success(greenThresholdB(data, minThresholdValue))
-                4 -> result.success(greenThresholdB(data, minThresholdValue))
+                1 -> result.success(greenThresholdS(pathData, minThresholdValue, algorithm))
+                2 -> result.success(greenThresholdB(data, minThresholdValue, algorithm))
+                3 -> result.success(greenThresholdB(data, minThresholdValue, algorithm))
+                4 -> result.success(greenThresholdB(data, minThresholdValue, algorithm))
             }
         }
 
         //Module: Miscellaneous Image Transformations
         private fun greenThresholdS(
             pathData: String,
-            minThresholdValue: Double
+            minThresholdValue: Double,
+            algorithm: String
         ): ByteArray {
             var byteArray = ByteArray(0)
 
@@ -40,13 +42,17 @@ class GreenThresholdFactory {
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-                val hlsImage = Mat()
-                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HSV)
+                val thresholdImage = Mat()
+                Imgproc.cvtColor(
+                    srcImage,
+                    thresholdImage,
+                    if (algorithm == "hsv") Imgproc.COLOR_BGR2HSV else Imgproc.COLOR_BGR2HLS
+                )
 
                 val finalMask = Mat()
 
                 Core.inRange(
-                    hlsImage,
+                    thresholdImage,
                     Scalar(40.0, minThresholdValue, 100.0),
                     Scalar(90.0, 255.0, 255.0),
                     finalMask
@@ -65,20 +71,25 @@ class GreenThresholdFactory {
         //Module: Miscellaneous Image Transformations
         private fun greenThresholdB(
             data: ByteArray,
-            minThresholdValue: Double
+            minThresholdValue: Double,
+            algorithm: String
         ): ByteArray {
             var byteArray = ByteArray(0)
 
             try {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
-                val hlsImage = Mat()
-                Imgproc.cvtColor(srcImage, hlsImage, Imgproc.COLOR_BGR2HSV)
+                val thresholdImage = Mat()
+                Imgproc.cvtColor(
+                    srcImage,
+                    thresholdImage,
+                    if (algorithm == "hsv") Imgproc.COLOR_BGR2HSV else Imgproc.COLOR_BGR2HLS
+                )
 
                 val finalMask = Mat()
 
                 Core.inRange(
-                    hlsImage,
+                    thresholdImage,
                     Scalar(40.0, minThresholdValue, 100.0),
                     Scalar(90.0, 255.0, 255.0),
                     finalMask

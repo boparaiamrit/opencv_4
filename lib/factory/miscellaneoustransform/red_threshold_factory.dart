@@ -19,6 +19,7 @@ class RedThresholdFactory {
     required String pathString,
     required Uint8List imageData,
     required double minThresholdValue,
+    required String algorithm,
   }) async {
     File _file;
     Uint8List _fileAssets;
@@ -30,7 +31,8 @@ class RedThresholdFactory {
           "pathType": 1,
           "pathString": pathString,
           "data": Uint8List(0),
-          "minThresholdValue":minThresholdValue,
+          "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
         break;
       case CVPathFrom.URL:
@@ -39,7 +41,8 @@ class RedThresholdFactory {
           "pathType": 2,
           "pathString": '',
           "data": await _file.readAsBytes(),
-          "minThresholdValue":minThresholdValue,
+          "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
 
         break;
@@ -49,7 +52,8 @@ class RedThresholdFactory {
           "pathType": 3,
           "pathString": '',
           "data": _fileAssets,
-          "minThresholdValue":minThresholdValue,
+          "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
         break;
       case CVPathFrom.DATA:
@@ -57,7 +61,8 @@ class RedThresholdFactory {
           "pathType": 4,
           "pathString": '',
           "data": imageData,
-          "minThresholdValue":minThresholdValue,
+          "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
         break;
       default:
@@ -66,7 +71,8 @@ class RedThresholdFactory {
           "pathType": 3,
           "pathString": '',
           "data": _fileAssets,
-          "minThresholdValue":minThresholdValue,
+          "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
     }
 

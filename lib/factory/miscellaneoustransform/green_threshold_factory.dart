@@ -19,6 +19,7 @@ class GreenThresholdFactory {
     required String pathString,
     required Uint8List imageData,
     required double minThresholdValue,
+    required String algorithm,
   }) async {
     File _file;
     Uint8List _fileAssets;
@@ -31,6 +32,7 @@ class GreenThresholdFactory {
           "pathString": pathString,
           "data": Uint8List(0),
           "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
         break;
       case CVPathFrom.URL:
@@ -40,6 +42,7 @@ class GreenThresholdFactory {
           "pathString": '',
           "data": await _file.readAsBytes(),
           "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
 
         break;
@@ -50,6 +53,7 @@ class GreenThresholdFactory {
           "pathString": '',
           "data": _fileAssets,
           "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
         break;
       case CVPathFrom.DATA:
@@ -58,6 +62,7 @@ class GreenThresholdFactory {
           "pathString": '',
           "data": imageData,
           "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
         break;
       default:
@@ -67,6 +72,7 @@ class GreenThresholdFactory {
           "pathString": '',
           "data": _fileAssets,
           "minThresholdValue": minThresholdValue,
+          "algorithm": algorithm,
         });
     }
 
