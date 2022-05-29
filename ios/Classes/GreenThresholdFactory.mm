@@ -42,7 +42,7 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data, doub
     CGFloat cols = CGImageGetWidth(image);
     CGFloat rows = CGImageGetHeight(image);
     
-    src = cv::Mat(rows, cols, CV_8UC4); // 8 bits per component, 4 channels (color channels + alpha)
+    src = cv::Mat(rows, cols, CV_8UC3); // 8 bits per component, 4 channels (color channels + alpha)
     CGContextRef contextRef = CGBitmapContextCreate(src.data,                 // Pointer to  data
                                                     cols,                       // Width of bitmap
                                                     rows,                       // Height of bitmap
