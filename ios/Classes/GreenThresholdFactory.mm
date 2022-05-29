@@ -42,7 +42,7 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data, doub
     CGFloat cols = CGImageGetWidth(image);
     CGFloat rows = CGImageGetHeight(image);
     
-    src = cv::Mat(rows, cols, CV_8UC3); // 8 bits per component, 4 channels (color channels + alpha)
+    src = cv::Mat(rows, cols, CV_8UC4); // 8 bits per component, 4 channels (color channels + alpha)
     CGContextRef contextRef = CGBitmapContextCreate(src.data,                 // Pointer to  data
                                                     cols,                       // Width of bitmap
                                                     rows,                       // Height of bitmap
@@ -56,15 +56,15 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data, doub
     CFRelease(image);
     CFRelease(image_provider);
     CFRelease(file_data_ref);
-    
-    
+
+
     cv::Mat hlsImage;
-    
-    cv::cvtColor(src, hlsImage, [algorithm  isEqual: @"hsv"] ? cv::COLOR_BGR2HSV : cv::COLOR_BGR2HLS);
-    
+
+    cv::cvtColor(src, hlsImage, [algorithm  isEqual: @"hsv"] ? cv::COLOR_RGB2HSV : cv::COLOR_RGB2HLS);
+
     cv::Mat dst;
-    
-    cv::inRange(hlsImage, cv::Scalar(40, minThresholdValue, 100), cv::Scalar(90, 255, 255), dst);
+
+    cv::inRange(hlsImage, cv::Scalar(40, minThresholdValue, 100, 0), cv::Scalar(90, 255, 255, 255), dst);
     
     NSData *data2 = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
     
