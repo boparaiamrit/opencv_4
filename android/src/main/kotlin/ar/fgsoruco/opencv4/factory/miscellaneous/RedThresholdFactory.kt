@@ -43,10 +43,14 @@ class RedThresholdFactory {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
                 val thresholdImage = Mat()
+
+                var algorithmInt = Imgproc.COLOR_BGR2HSV
+                if (algorithm != "hsv") algorithmInt = Imgproc.COLOR_BGR2HLS
+
                 Imgproc.cvtColor(
                     srcImage,
                     thresholdImage,
-                    if (algorithm == "hsv") Imgproc.COLOR_BGR2HSV else Imgproc.COLOR_BGR2HLS
+                    algorithmInt
                 )
 
                 val mask1 = Mat()
@@ -90,10 +94,14 @@ class RedThresholdFactory {
                 val srcImage = Imgcodecs.imdecode(MatOfByte(*data), Imgcodecs.IMREAD_UNCHANGED)
 
                 val thresholdImage = Mat()
+
+                var algorithmInt = Imgproc.COLOR_BGR2HSV
+                if (algorithm != "hsv") algorithmInt = Imgproc.COLOR_BGR2HLS
+
                 Imgproc.cvtColor(
                     srcImage,
                     thresholdImage,
-                    if (algorithm == "hsv") Imgproc.COLOR_BGR2HSV else Imgproc.COLOR_BGR2HLS
+                    algorithmInt
                 )
 
                 val mask1 = Mat()
