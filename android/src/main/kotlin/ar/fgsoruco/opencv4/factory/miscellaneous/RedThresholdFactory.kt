@@ -59,13 +59,13 @@ class RedThresholdFactory {
 
                 Core.inRange(
                     thresholdImage,
-                    Scalar(0.0, minThresholdValue, 100.0),
+                    Scalar(0.0, minThresholdValue, 70.0),
                     Scalar(10.0, 255.0, 255.0),
                     mask1
                 )
                 Core.inRange(
                     thresholdImage,
-                    Scalar(160.0, minThresholdValue, 100.0),
+                    Scalar(160.0, minThresholdValue, 70.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
@@ -110,13 +110,13 @@ class RedThresholdFactory {
 
                 Core.inRange(
                     thresholdImage,
-                    Scalar(0.0, minThresholdValue, 100.0),
+                    Scalar(0.0, minThresholdValue, 70.0),
                     Scalar(10.0, 255.0, 255.0),
                     mask1
                 )
                 Core.inRange(
                     thresholdImage,
-                    Scalar(160.0, minThresholdValue, 100.0),
+                    Scalar(160.0, minThresholdValue, 70.0),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
