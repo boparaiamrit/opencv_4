@@ -65,7 +65,7 @@ class RedThresholdFactory {
                 )
                 Core.inRange(
                     thresholdImage,
-                    Scalar(160.0, minThresholdValue, minThresholdValue),
+                    Scalar(170.0, minThresholdValue, minThresholdValue),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )
@@ -116,7 +116,7 @@ class RedThresholdFactory {
                 )
                 Core.inRange(
                     thresholdImage,
-                    Scalar(160.0, minThresholdValue, minThresholdValue),
+                    Scalar(170.0, minThresholdValue, minThresholdValue),
                     Scalar(180.0, 255.0, 255.0),
                     mask2
                 )

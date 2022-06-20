@@ -57,8 +57,8 @@ class GreenThresholdFactory {
 
                 Core.inRange(
                     thresholdImage,
-                    Scalar(40.0, minThresholdValue, minThresholdValue),
-                    Scalar(90.0, 255.0, 255.0),
+                    Scalar(30.0, minThresholdValue, minThresholdValue),
+                    Scalar(80.0, 255.0, 255.0),
                     finalMask
                 )
 
@@ -98,8 +98,8 @@ class GreenThresholdFactory {
 
                 Core.inRange(
                     thresholdImage,
-                    Scalar(40.0, minThresholdValue, minThresholdValue),
-                    Scalar(90.0, 255.0, 255.0),
+                    Scalar(30.0, minThresholdValue, minThresholdValue),
+                    Scalar(80.0, 255.0, 255.0),
                     finalMask
                 )
 
