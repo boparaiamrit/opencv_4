@@ -64,7 +64,7 @@ FlutterStandardTypedData * greenThresholdB(FlutterStandardTypedData * data, doub
 
     cv::Mat dst;
 
-    cv::inRange(hlsImage, cv::Scalar(40, minThresholdValue, 100, 0), cv::Scalar(90, 255, 255, 255), dst);
+    cv::inRange(hlsImage, cv::Scalar(40, minThresholdValue, minThresholdValue, 0), cv::Scalar(90, 255, 255, 255), dst);
     
     NSData *data2 = [NSData dataWithBytes:dst.data length:dst.elemSize()*dst.total()];
     

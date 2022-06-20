@@ -64,8 +64,8 @@ FlutterStandardTypedData * redThresholdB(FlutterStandardTypedData * data, double
     cv::Mat mask2;
     cv::Mat dst;
 
-    cv::inRange(hlsImage, cv::Scalar(0, minThresholdValue, 100, 0), cv::Scalar(10, 255, 255, 255), mask1);
-    cv::inRange(hlsImage, cv::Scalar(160, minThresholdValue, 100, 0), cv::Scalar(180, 255, 255, 255), mask2);
+    cv::inRange(hlsImage, cv::Scalar(0, minThresholdValue, minThresholdValue, 0), cv::Scalar(10, 255, 255, 255), mask1);
+    cv::inRange(hlsImage, cv::Scalar(160, minThresholdValue, minThresholdValue, 0), cv::Scalar(180, 255, 255, 255), mask2);
     
     cv::add(mask1, mask2, dst);
     
